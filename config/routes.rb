@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/edit'
-
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/show'
-
-  get 'sessions/new'
-
   get "welcome/index"
   root "welcome#index", as: 'welcome'
 
