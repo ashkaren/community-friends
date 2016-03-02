@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'figaro'
 gem 'google_drive'
 gem 'high_voltage'
+gem 'bcrypt-ruby'
 
 group :development do
 	gem 'better_errors'

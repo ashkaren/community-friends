@@ -702,12 +702,20 @@ div.home-header {
 
 
 }
+div.about {
+  /*background-image: url('logo-01.png');*/
+  background-color: #00dcb9;
+  width: 1600px;
+  height: 400px;
+  position: relative;
 
-.about-info {
-  vertical-align: top;
-  display: inline-block;
+}
+div.about-info {
+  background-color: #00dcb9;
+  /*vertical-align: top;*/
+ /* display: inline-block; */
   text-align: center;
-  width: 960px;
+  width: 1600px;
   h2 {
     font-size: 2em;
   }
