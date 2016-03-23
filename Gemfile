@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
+<<<<<<< HEAD
 ruby '2.2.1'
 gem 'rails', '4.2.5.2'
+=======
+gem 'rails'
+>>>>>>> feature1
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -11,9 +15,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'activerecord-tableless'
 gem 'bootstrap-sass'
 gem 'figaro'
-gem 'google_drive'
 gem 'high_voltage'
 gem 'bcrypt'
+<<<<<<< HEAD
 gem 'simple_form'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -42,5 +46,22 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'thin'
+=======
+gem 'devise'
+gem 'devise_invitable'
+
+group :development do
+  gem 'web-console', '~> 2.0'
+  gem 'sqlite3'
+  gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+  gem 'rails_layout'
+end
+
+group :production do
+  gem 'pg', '0.15.1'
+>>>>>>> feature1
   gem 'rails_12factor', '0.0.2'
 end

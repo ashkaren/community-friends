@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users
+  devise_for :users
   resources :posts
   get "welcome/index"
   root "welcome#index", as: 'welcome'
@@ -9,5 +9,4 @@ Rails.application.routes.draw do
   get "/contact", to: "static_pages#contact", as: 'contact'
   get "/help", to: "static_pages#help", as: 'help'
 
-  match '/login',  to: 'sessions#new',          via: 'get'
 end
