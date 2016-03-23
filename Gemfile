@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'high_voltage'
 gem 'bcrypt'
 
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'sqlite3'
