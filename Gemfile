@@ -12,7 +12,8 @@ gem 'bootstrap-sass'
 gem 'figaro'
 gem 'high_voltage'
 gem 'bcrypt'
-
+gem 'devise'
+gem 'devise_invitable'
 
 group :development do
   gem 'web-console', '~> 2.0'
