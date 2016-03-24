@@ -1,10 +1,12 @@
 class StaticPagesController < ApplicationController
-  def about
-  end
+	skip_before_filter :authenticate_user!
 
-  def contact
-  end
+  	def about
+  	end
 
-  def help
-  end
+  	def contact
+  	end
+
+  	def help
+  	end
 end
