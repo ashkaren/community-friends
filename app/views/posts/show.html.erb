@@ -2,7 +2,7 @@
 
 <p>
   <strong>Attachment:</strong>
-  <%= @post.attachment %>
+<%= image_tag(@post.attachment_url, :width => 100) if @post.attachment.present? %>
 </p>
 
 <p>
