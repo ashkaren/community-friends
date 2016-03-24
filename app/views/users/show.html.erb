@@ -4,14 +4,10 @@
   <h1 class="user-title">
     <%= @user.fname %>
   </h1>
-
   <% if signed_in? && @user.id == current_user.id %>
-  <div class="user-settings">
-    <p class="title">Update User Info.</p>
-    <p class="delete-account"><%= link_to "Delete Account", @user, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <p class="edit-account"><%= link_to "Edit Account", edit_user_path %></p>
-  </div>
+    <div class="user-settings">
+      <p class="title">My Actions</p>
+      <p><%= link_to "New Post", posts_path %></p>
+    </div>
   <% end %>
-
 </aside>
-<p class="clear"></p>
