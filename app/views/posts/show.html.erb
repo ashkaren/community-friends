@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+  <strong>Attachment:</strong>
+  <%= @post.attachment %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @post.description %>
+  <strong>Content:</strong>
+  <%= @post.content %>
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @post.image_url %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @post.time %>
+  <strong>User:</strong>
+  <%= @post.user %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
