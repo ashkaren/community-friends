@@ -1,8 +1,3 @@
-module ApplicationHelper
-	def logoHeader
-    	image_tag("logo_icon.png")
-  	end
-end
 module ActionView
   module Helpers
     class FormBuilder 
