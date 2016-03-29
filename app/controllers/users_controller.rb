@@ -1,20 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  before_action :authenticate_user!
+  before_action :set_user
+  before_action :check_ownership, only: [:edit, :update]
+  respond_to :html, :js
 
   # GET /users/1
   # GET /users/1.json
   def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
   end
 
   # GET /users/1/edit
@@ -40,15 +32,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
     end
+  end
+
+  def deactivate
   end
 
   # DELETE /users/1
@@ -62,13 +53,16 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
+    def user_params
+      params.require(:user).permit(:name, :about, :avatar, :cover,
+                                   :sex, :dob, :location, :phone_number)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation)
+    def check_ownership
+      redirect_to current_user, notice: 'Not Authorized' unless @user == current_user
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 end
