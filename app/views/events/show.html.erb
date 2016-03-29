@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>When:</strong>
-  <%= @event.when %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @event.user %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div id="event-<%= @event.id %>" class="event">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 well">
+      <%= render @event, remote: false %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 well">
+      <h4>Comments</h4>
+      <hr>
+      <%= render 'comments/form', commentable: @event %>
+      <br>
+      <div class="comments">
+        <%= render(@comments) || render('shared/no_resource', resources: 'Comments') %>
+      </div>
+    </div>
+  </div>
+</div>

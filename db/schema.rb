@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327014730) do
+ActiveRecord::Schema.define(version: 20160329203647) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50, default: ""
@@ -32,20 +32,28 @@ ActiveRecord::Schema.define(version: 20160327014730) do
     t.string   "name"
     t.datetime "when"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "cached_votes_up", default: 0
+    t.integer  "comments_count",  default: 0
   end
 
+  add_index "events", ["cached_votes_up"], name: "index_events_on_cached_votes_up"
+  add_index "events", ["comments_count"], name: "index_events_on_comments_count"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "attachment"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "comments_count",  default: 0
+    t.integer  "cached_votes_up", default: 0
   end
 
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
+  add_index "posts", ["comments_count"], name: "index_posts_on_comments_count"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -65,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160327014730) do
     t.string   "lname",                  default: "",        null: false
     t.string   "address",                default: "",        null: false
     t.string   "role",                   default: "regular", null: false
+    t.integer  "posts_count",            default: 0,         null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
