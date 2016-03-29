@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 20160324172915) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
+    t.string   "name",                   default: "",        null: false
     t.string   "email",                  default: "",        null: false
     t.string   "encrypted_password",     default: "",        null: false
+    t.string   "about"
+    t.string   "avatar"
+    t.string   "cover"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -34,14 +38,18 @@ ActiveRecord::Schema.define(version: 20160324172915) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
-    t.string   "fname",                  default: "",        null: false
-    t.string   "lname",                  default: "",        null: false
     t.string   "address",                default: "",        null: false
     t.string   "role",                   default: "regular", null: false
+    t.string   "sex",                    default: "",        null: false
+    t.integer  "posts_count",            default: 0,         null: false
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
