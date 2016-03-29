@@ -1,0 +1,12 @@
+<% if activity.trackable %>
+  <div class="activity-like">
+    <div class="info">
+      <h4 class="name"><%= activity.owner.name %></h4>
+      <span class="action">liked a <%= link_to 'post', activity.trackable %></span>
+    </div>
+    <div class="content">
+      <h4><small><%= activity.trackable.content %></small></h4>
+    </div>
+    <%= render 'shared/created_at', activity: activity %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="activity-follow">
+  <div class="follower">
+    <h4 class="name"><%= activity.owner.name %></h4>
+    <span class="action">Followed </span>
+  </div>
+  <div class="followee">
+    <h4 class="name"><%= activity.trackable.followable.name %></h4>
+  </div>
+  <%= render 'shared/created_at', activity: activity %>
+</div>
