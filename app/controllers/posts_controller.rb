@@ -23,14 +23,14 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
+def create
   @post = Post.new(post_params) do |post|
     post.user = current_user
   end
   if @post.save
-    redirect_to feed_path(current_user)
+    redirect_to root_path
   else
-    redirect_to feed_path(current_user), notice: @post.errors.full_messages.first
+    redirect_to root_path, notice: @post.errors.full_messages.first
   end
 end
 
