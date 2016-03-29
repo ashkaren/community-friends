@@ -1,17 +1,4 @@
 <% content_for :title do %>Community Friends<% end %>
 <% content_for :description do %>Community Friends<% end %>
 
-
-
-<% if signed_in? %>
-	<mainside id="home-panel">
-	    <div>
-	    	<t1><strong>My Community</strong></t1>
-	    	<p><%= link_to "Main Feed", welcome_path %></p>
-	    </div>
-    </aside>
-    <% else %>
-    	<div>
-			<%= image_tag("header1.jpg", :alt => "Community Friends") %>
-		</div>
-<% end %>
+<%= image_tag("header1.jpg", :alt => "Community Friends") %>
