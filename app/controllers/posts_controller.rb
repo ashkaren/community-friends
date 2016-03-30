@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments.all
   end
-
+  
   def create
     @post = current_user.posts.new(post_params)
     if @post.save

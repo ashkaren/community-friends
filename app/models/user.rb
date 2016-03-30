@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
   acts_as_voter
   acts_as_follower
@@ -18,7 +18,4 @@ class User < ActiveRecord::Base
 
   self.per_page = 10
 
-  extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
-end
 end
