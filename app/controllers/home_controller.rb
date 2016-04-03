@@ -3,7 +3,17 @@ class HomeController < ApplicationController
   respond_to :html, :js
 
   def index
-end
+  	@activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+  end
+
+  def front
+    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+  end
+
+  def find_friends
+    @friends = @user.all_following
+    @users =  User.where.not(id: @friends.unshift(@user)).paginate(page: params[:page])
+  end
 
   private
   def set_user

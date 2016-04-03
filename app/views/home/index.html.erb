@@ -1,5 +1,22 @@
 <div class="row">
+  <div class="col-lg-3">
+    <%= render 'appwide/user_info' %>
+  </div>
   <div id="newsfeed" class="col-lg-6">
     <%= render 'posts/form' %>
     <br>
+    <div id="activities">
+      <% if @activities.empty? %>
+        <div class="well">
+          <%= render('appwide/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+        <%= render_activities(@activities, layout: '/appwide/activity') %>
+      <% end %>
+    </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+  </div>
+  <div class="col-lg-3">
+    <%= render 'appwide/links' %>
+  </div>
 </div>
