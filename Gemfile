@@ -37,10 +37,7 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
   gem 'rails_layout'
-<<<<<<< HEAD
-=======
   gem 'letter_opener'
->>>>>>> major3
   gem 'guard'
   gem 'guard-rspec', '~> 4.2.8'
 end
@@ -49,28 +46,6 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'unicorn'
   gem 'cloudinary'
-<<<<<<< HEAD
-  gem 'rails_12factor', '0.0.2'
-end
-
-gem 'carrierwave'
-gem 'font-awesome-rails'
-gem 'friendly_id', '~> 5.0.0'
-
-gem 'will_paginate', '~> 3.0.6'
-gem 'public_activity'
-
-gem 'acts_as_votable', '~> 0.10.0'
-gem 'acts_as_commentable'
-gem 'acts_as_follower'
-gem 'counter_culture', '~> 0.1.33'
-
-gem 'faker'
-gem 'populator'
-gem 'auto_html'
-gem 'momentjs-rails'
-gem 'bootstrap3-datetimepicker-rails'
-=======
+  gem 'bootstrap3-datetimepicker-rails'
   gem 'rails_12factor'
 end
->>>>>>> major3
