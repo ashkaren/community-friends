@@ -7,4 +7,39 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.delete_all
 
+user = User.create!(
+	:name => 'Admin', 
+	:email => 'admin@valdosta.edu', 
+	:password => 'password', 
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male',
+	:role => 'Admin'
+)
 
+user = User.create!(
+	:name => 'Jason Castillo', 
+	:email => 'jhcastillo@valdosta.edu', 
+	:password => 'password', 
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male'
+)
+
+user = User.create!(
+	:name => 'Gena Evtodiev', 
+	:email => 'gvevtodiev@valdosta.edu', 
+	:password => 'password', 
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male'
+)
+
+user = User.create!(
+	:name => 'Fifi Smith-Quayson', 
+	:email => 'fsmithquayson@valdosta.edu', 
+	:password => 'password', 
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male'
+)
