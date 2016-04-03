@@ -1,0 +1,12 @@
+<div id="user-info" class="well">
+  <div class="text-center">
+    <%= render 'appwide/avatar', user: @user %><br>
+    <h5><%= link_to @user.name, @user %></h5>
+  </div>
+  <h5>
+    <%= fa_icon 'shield' %>
+    <%= pluralize(@user.posts_count, 'post') %>
+  </h5>
+
+  <br>
+</div>

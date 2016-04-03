@@ -41,6 +41,10 @@ GEM
     acts_as_commentable (4.0.2)
     acts_as_follower (0.2.1)
     acts_as_votable (0.10.0)
+<<<<<<< HEAD
+=======
+    addressable (2.4.0)
+>>>>>>> major3
     after_commit_action (1.0.1)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -97,8 +101,11 @@ GEM
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
     diff-lcs (1.2.5)
+<<<<<<< HEAD
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+=======
+>>>>>>> major3
     erubis (2.7.0)
     execjs (2.6.0)
     faker (1.6.3)
@@ -143,6 +150,13 @@ GEM
       turbolinks
     json (1.8.3)
     kgio (2.10.0)
+<<<<<<< HEAD
+=======
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
+>>>>>>> major3
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -152,14 +166,23 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
+<<<<<<< HEAD
     mime-types (2.99.1)
+=======
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0221)
+>>>>>>> major3
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     momentjs-rails (2.11.0)
       railties (>= 3.1)
     multi_json (1.11.2)
     nenv (0.3.0)
+<<<<<<< HEAD
     netrc (0.11.0)
+=======
+>>>>>>> major3
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
@@ -220,10 +243,15 @@ GEM
     redcarpet (3.3.4)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
+<<<<<<< HEAD
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+=======
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+>>>>>>> major3
     rinku (1.7.3)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -267,9 +295,12 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+<<<<<<< HEAD
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+=======
+>>>>>>> major3
     unicorn (5.0.1)
       kgio (~> 2.6)
       rack
@@ -297,7 +328,10 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.2.0)
+<<<<<<< HEAD
   bootstrap3-datetimepicker-rails
+=======
+>>>>>>> major3
   carrierwave
   cloudinary
   coffee-rails (~> 4.0.0)
@@ -314,13 +348,17 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+<<<<<<< HEAD
   momentjs-rails
+=======
+  letter_opener
+>>>>>>> major3
   pg (= 0.15.1)
   populator
   public_activity
   quiet_assets
   rails
-  rails_12factor (= 0.0.2)
+  rails_12factor
   rails_layout
   sass-rails (~> 4.0.0)
   spring

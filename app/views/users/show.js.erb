@@ -1,0 +1,3 @@
+$('#activities').append("<%= j render_activities(@activities, layout: '/shared/activity') %>");
+
+<%= render 'appwide/paginate', resources: @activities %>

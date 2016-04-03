@@ -1,15 +1,19 @@
-<%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
 
-<aside id="profile-panel">
-  <h1 class="user-title">
-    <%= @user.fname %>
-  </h1>
-  <% if signed_in? && @user.id == current_user.id %>
-    <div class="user-settings">
-      <p class="title">My Actions</p>
-      <p><%= link_to "New Post", posts_path, :style => 'color:#000000;' %></p>
-      <p><%= link_to "New Event", new_event_path, :style => 'color:#000000;' %></p>
-    </div>
-  <% end %>
-</aside>
-
+<%= render 'appwide/cover', user: @user %>
+<br>
+<div id="user-<%= @user.id %>" class="row">
+  <div class="col-lg-3">
+    <%= render 'appwide/user_info' %>
+  </div>
+<!--   ADD ADDTIONAL STUFF-->  
+<div class="col-lg-3">
+    <% if @user.id == current_user.id %>
+      <div class="well">
+        <ul class="nav nav-pills nav-stacked">
+          <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
+          <li><%= link_to 'Change password', edit_user_registration_path %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 <div class="info">
+  <%= render 'appwide/avatar', user: post.user %>
   <h4 class="name"><%= post.user.name %></h4>
   <span class="action">created a <%= link_to 'post', post %></span>
 </div>
@@ -9,7 +10,7 @@
       <%= image_tag post.attachment %>
     </div>
   <% end %>
-  <%= render 'shared/created_at', activity: post %>
+  <%= render 'appwide/created_at', activity: post %>
   <div class="points">
     <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
     <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
@@ -25,4 +26,4 @@
     </div>
   </div>
 </div>
-<%= render 'shared/actions', resource: post %>
+<%= render 'appwide/actions', resource: post %>
