@@ -1,5 +1,5 @@
 module ApplicationHelper
 	def logoHeader
-    	image_tag("logo_icon.png")
+    	image_tag("logo.png")
   	end
 end
