@@ -247,6 +247,8 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     shellany (0.0.1)
+    simple_calendar (2.0.6)
+      rails (>= 3.0)
     slop (3.6.0)
     spring (1.6.4)
     sprockets (2.12.4)
@@ -323,6 +325,7 @@ DEPENDENCIES
   rails_12factor
   rails_layout
   sass-rails (~> 4.0.0)
+  simple_calendar (~> 2.0)
   spring
   sqlite3
   turbolinks
