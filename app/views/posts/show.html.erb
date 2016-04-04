@@ -12,7 +12,7 @@
       <%= render 'comments/form', commentable: @post %>
       <br>
       <div class="comments">
-        <%= render(@comments) || render('appwide/no_resource', resources: 'Comments') %>
+        <%= render 'comments/comments', :comment => @comment || render('appwide/no_resource', resources: 'Comments') %>
       </div>
     </div>
   </div>

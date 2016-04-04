@@ -7,6 +7,14 @@
     <%= fa_icon 'shield' %>
     <%= pluralize(@user.posts_count, 'post') %>
   </h5>
-
-  <br>
+  <h5>
+    <%= fa_icon @user.sex %>
+    <%= @user.sex %>
+  </h5>
+  <% if @user.address.present? %>
+    <h5>
+      <%= fa_icon 'map-marker' %>
+      <%= @user.address %>
+    </h5>
+  <% end %>
 </div>

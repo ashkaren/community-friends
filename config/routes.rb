@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :events
   resources :posts
+  resources :comments, only: [:create, :destroy]
   devise_for :users
   resources :users do
     member do
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :deactivate
     end
   end
+  resources :events, except: [:edit, :update]
 
 	authenticated :user do
     	root to: 'home#index', as: 'home'

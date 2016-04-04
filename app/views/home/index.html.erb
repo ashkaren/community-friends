@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-lg-3">
-    <%= render 'appwide/user_info' %>
+<div class="row row-no-padding">
+  <div class="col-lg-2">
+    <%= render 'appwide/side_links' %>
   </div>
   <div id="newsfeed" class="col-lg-6">
     <div id="activities">
@@ -14,7 +14,7 @@
     </div>
     <%= render 'appwide/paginate', resources: @activities %>
   </div>
-  <div class="col-lg-3">
+  <div class="col-lg-4">
     <%= render 'appwide/links' %>
   </div>
 </div>
