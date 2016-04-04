@@ -1,4 +1,3 @@
-
 <div id="post-<%= @post.id %>" class="post">
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3 well">
@@ -12,7 +11,7 @@
       <%= render 'comments/form', commentable: @post %>
       <br>
       <div class="comments">
-        <%= render 'comments/comments', :comment => @comment || render('appwide/no_resource', resources: 'Comments') %>
+        <%= render(@comments) || render('appwide/no_resource', resources: 'Comments') %>
       </div>
     </div>
   </div>
