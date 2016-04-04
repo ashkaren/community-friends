@@ -1,17 +1,32 @@
-
 <%= render 'appwide/cover', user: @user %>
 <br>
 <div id="user-<%= @user.id %>" class="row">
   <div class="col-lg-3">
     <%= render 'appwide/user_info' %>
   </div>
-<!--   ADD ADDTIONAL STUFF-->  
-<div class="col-lg-3">
-    <% if @user.id == current_user.id %>
+  <div class="col-lg-6">
+    <div id="activities">
+      <%= render 'posts/form' %>
+      <br>
+      <% if @activities.empty? %>
+        <div class="well">
+          <%= render('appwide/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+        <%= render_activities(@activities, layout: '/appwide/activity') %>
+      <% end %>
+    </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+  </div>
+  <div class="col-lg-3">
+  <% if signed_in? && @user.id == current_user.id %>
       <div class="well">
         <ul class="nav nav-pills nav-stacked">
           <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
           <li><%= link_to 'Change password', edit_user_registration_path %></li>
+          <li><%= link_to 'Friends', friends_user_path(@user) %></li>
+          <li><%= link_to 'Followers', followers_user_path(@user) %></li>
+          <li><%= link_to 'Deactivate', deactivate_user_path(@user) %></li>
         </ul>
       </div>
     <% end %>

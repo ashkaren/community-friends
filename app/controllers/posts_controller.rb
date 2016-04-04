@@ -9,9 +9,9 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to root_path
+      redirect_to welcome_path
     else
-      redirect_to root_path, notice: @post.errors.full_messages.first
+      redirect_to welcome_path, notice: @post.errors.full_messages.first
     end
   end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       format.js
-      format.html { redirect_to root_path }
+      format.html { redirect_to welcome_path }
     end
   end
 

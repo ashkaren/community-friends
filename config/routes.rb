@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   resources :events
   resources :posts
   devise_for :users
-  resources :users
-  get "/users/:id(.:format)", to: "users#show", as: "feed"
+  resources :users do
+    member do
+      get :friends
+      get :followers
+      get :deactivate
+    end
+  end
 
 	authenticated :user do
     	root to: 'home#index', as: 'home'
@@ -17,4 +22,9 @@ Rails.application.routes.draw do
   	get "/contact", to: "static_pages#contact", as: 'contact'
   	get "/help", to: "static_pages#help", as: 'help'
   	
+    match :follow, to: 'follows#create', as: :follow, via: :post
+    match :unfollow, to: 'follows#destroy', as: :unfollow, via: :post
+    match :like, to: 'likes#create', as: :like, via: :post
+    match :unlike, to: 'likes#destroy', as: :unlike, via: :post
+
 end
