@@ -15,8 +15,21 @@
     </div>
     <div class="col-lg-4">
       <%= render 'appwide/links' %>
-    </div>    
+    </div>   
 
+  <% elsif current_user.business? %>
+    <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
+      <div id="activities">
+        <% if @activities.empty? %>
+          <div class="well">
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+          <%= render_activities(@activities, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+      <%= render 'appwide/paginate', resources: @activities %>
+    </div>
   <% else %>
 
     <div class="col-lg-2">

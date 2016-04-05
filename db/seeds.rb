@@ -68,7 +68,7 @@ user = User.create!(
 	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1704 N Patterson St, Valdosta, GA',
-	:business => true , 
+	:business => true,
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 
 )

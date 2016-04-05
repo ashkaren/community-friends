@@ -35,9 +35,6 @@ gem 'fog'
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem "simple_calendar", "~> 2.0"
-gem 'mini_magick'
-gem 'fog'
 
 
 group :development do
