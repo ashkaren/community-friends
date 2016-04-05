@@ -6,8 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th colspan="5" ></th>
       <th>Start time</th>
     </tr>
   </thead>
@@ -18,8 +16,10 @@
     <% @meetings.each do |meeting| %>
       <tr>
         <td><%= meeting.name %></td>
-        <td colspan="5" ></td>
+
         <td><%= meeting.start_time %></td>
+        <td><%= image_tag(meeting.image_url, class: 'list_image') %></td>
+        <td><%= meeting.description %></td>
         <td><%= link_to 'Show', meeting %></td>
         <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
         <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,15 +29,15 @@
 </table>
 
 <br>
-<%= month_calendar meetings: @meetings do |date, meetings| %>
+<%= month_calendar events: @meetings do |date, meetings| %>
   <%= date.day %>
 
   <% meetings.each do |meeting| %>
     <div>
       <%= meeting.name %>
     </div>
-
   <% end %>
 <% end %>
+
 
 <%= link_to 'New Event', new_meeting_path %>
