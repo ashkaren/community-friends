@@ -4,20 +4,20 @@
 <%= render 'appwide/cover', user: @user %>
 <br>
 <div id="user-<%= @user.id %>" class="row">
-  <div class="col-lg-4 col-md-offset-1">
+  <div class="col-lg-5">
     <%= render 'appwide/user_info' %>
+    <div style='width: 450px;'>
+      <div id="map" style='width: 450px; height: 200px;'></div>
+    </div>
+    <br>
+    <%= month_calendar do |date| %>
+      <%= date.day %>
+    <% end %>
   </div>
-
-  <div class="col-lg-6">
+  <div class="col-lg-7">
     <div id="activities">
       <%= render 'posts/form' %>
-
-
-        <%= month_calendar do |date| %>
-          <%= date.day %>
-        <% end %>
-
-
+      
       <br>
       <% if @activities.empty? %>
         <div class="well">
@@ -32,9 +32,8 @@
   </div>
   </div>
 </div>
-<div style='width: 450px;'>
-  <div id="map" style='width: 450px; height: 200px;'></div>
-</div>
+
+
 <script type="text/javascript">
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
