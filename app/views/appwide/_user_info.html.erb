@@ -8,7 +8,7 @@
     <%= pluralize(@user.posts_count, 'post') %>
   </h5>
   <h5>
-    <%= fa_icon @user.sex %>
+    <%= fa_icon 'male' %>
     <%= @user.sex %>
   </h5>
   <% if @user.address.present? %>

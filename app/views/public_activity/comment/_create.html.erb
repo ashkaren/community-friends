@@ -2,6 +2,7 @@
   <div class="info">
     <%= render 'appwide/avatar', user: activity.owner %>
     <h4 class="name"><%= activity.owner.name %></h4>
+    <span class="action">commented on a <%= link_to 'post', activity.trackable.commentable %></span>
   </div>
   <div class="content">
     <h4><small><%= activity.trackable.comment %></small></h4>
