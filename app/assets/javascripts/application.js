@@ -19,6 +19,7 @@
 //= require gmaps/google
 //= require_tree .
 
+
 $(document).ready(function(){
   $("#event_when").datetimepicker({
     format:'m/d/Y H:i'

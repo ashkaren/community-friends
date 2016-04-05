@@ -7,9 +7,17 @@
   <div class="col-lg-4 col-md-offset-1">
     <%= render 'appwide/user_info' %>
   </div>
+
   <div class="col-lg-6">
     <div id="activities">
       <%= render 'posts/form' %>
+
+
+        <%= month_calendar do |date| %>
+          <%= date.day %>
+        <% end %>
+
+
       <br>
       <% if @activities.empty? %>
         <div class="well">
@@ -18,6 +26,7 @@
       <% else %>
         <%= render_activities(@activities, layout: '/appwide/activity') %>
       <% end %>
+
     </div>
     <%= render 'appwide/paginate', resources: @activities %>
   </div>
@@ -35,3 +44,4 @@
     handler.getMap().setZoom(11);
   });
 </script>
+

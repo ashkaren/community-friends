@@ -30,10 +30,12 @@ gem 'populator'
 gem 'auto_html', '~>1.6.4'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem "simple_calendar", "~> 2.0"
+gem 'mini_magick'
+gem 'fog'
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'sqlite3'
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -44,10 +46,15 @@ group :development do
   gem 'guard-rspec', '~> 4.2.8'
 end
 
+group :development, :test do
+  gem 'sqlite3'
+  gem 'mailcatcher'
+end
+
 group :production do
   gem 'pg', '0.15.1'
   gem 'unicorn'
   gem 'cloudinary'
   gem 'bootstrap3-datetimepicker-rails'
-  gem 'rails_12factor'
+  gem 'rails_12factor', '0.0.2'
 end

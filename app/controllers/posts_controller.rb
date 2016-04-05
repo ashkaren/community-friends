@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments.all
   end
-  
+
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
@@ -13,6 +13,9 @@ class PostsController < ApplicationController
     else
       redirect_to welcome_path, notice: @post.errors.full_messages.first
     end
+
+    user.point = user.point+1
+    user.update_attributes(:point => user.point)
   end
 
   def edit
@@ -29,6 +32,9 @@ class PostsController < ApplicationController
       format.js
       format.html { redirect_to welcome_path }
     end
+
+    user.point = user.point-1
+    user.update_attributes(:point => user.point)
   end
 
   private
