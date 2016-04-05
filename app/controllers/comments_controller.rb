@@ -9,12 +9,20 @@ class CommentsController < ApplicationController
       comment.user = current_user
     end
     @comment.save
+
+    user.point = user.point+1
+    user.update_attributes(:point => user.point)
+
   end
 
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment_id = params[:id]
     @comment.destroy
+
+    user.point = user.point-1
+    user.update_attributes(:point => user.point)
+
   end
 
   private
