@@ -48,5 +48,5 @@ group :production do
   gem 'unicorn'
   gem 'cloudinary'
   gem 'bootstrap3-datetimepicker-rails'
-  gem 'rails_12factor'
+  gem 'rails_12factor', '0.0.2'
 end
