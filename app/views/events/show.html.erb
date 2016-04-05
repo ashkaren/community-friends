@@ -16,7 +16,7 @@
       <%= render 'comments/form', commentable: @event %>
       <br>
       <div class="comments">
-        <%= render(@comments) || render('shared/no_resource', resources: 'Comments') %>
+        <%= render(@comments) || render('appwide/no_resource', resources: 'Comments') %>
       </div>
     </div>
   </div>

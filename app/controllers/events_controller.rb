@@ -30,9 +30,9 @@ class EventsController < ApplicationController
     event.user = current_user
     end
       if @event.save
-        redirect_to feed_path(current_user)
+        redirect_to events_path(current_user)
       else
-        redirect_to feed_path(current_user), notice: @event.errors.full_messages.first
+        redirect_to events_path(current_user), notice: @event.errors.full_messages.first
       end
   end
 
