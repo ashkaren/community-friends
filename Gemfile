@@ -28,13 +28,10 @@ gem 'counter_culture', '~> 0.1.33'
 gem 'faker'
 gem 'populator'
 gem 'auto_html', '~>1.6.4'
-<<<<<<< HEAD
 gem "simple_calendar", "~> 2.0"
 gem 'mini_magick'
 gem 'fog'
-=======
 gem 'mailcatcher'
->>>>>>> origin/master
 
 group :development do
   gem 'web-console', '~> 2.0'

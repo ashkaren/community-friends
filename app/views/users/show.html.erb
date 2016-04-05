@@ -9,11 +9,16 @@
     <div id="activities">
       <%= render 'posts/form' %>
 
+      <%= month_calendar meetings: @meetings do |date, meetings| %>
+        <%= date.day %>
 
-        <%= month_calendar do |date| %>
-          <%= date.day %>
+        <% meetings.each do |meeting| %>
+          <div>
+            <%= meeting.name %>
+          </div>
+
         <% end %>
-
+      <% end %>
 
       <br>
       <% if @activities.empty? %>
