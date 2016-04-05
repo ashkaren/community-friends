@@ -9,10 +9,7 @@ class CommentsController < ApplicationController
       comment.user = current_user
     end
     @comment.save
-
-    user.point = user.point+1
-    user.update_attributes(:point => user.point)
-
+    redirect_to welcome_path
   end
 
   def destroy
