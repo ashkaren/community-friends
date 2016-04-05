@@ -1,20 +1,33 @@
 <div class="row row-no-padding">
-  <div class="col-lg-2">
-    <%= render 'appwide/side_links' %>
-  </div>
-  <div id="newsfeed" class="col-lg-6">
-    <div id="activities">
-      <% if @activities.empty? %>
-        <div class="well">
-          <%= render('appwide/no_resource', resources: 'Activities') %>
-        </div>
-      <% else %>
-        <%= render_activities(@activities, layout: '/appwide/activity') %>
-      <% end %>
+  <% if current_user.admin? %>
+
+    <div class="col-lg-4">
+      <%= render 'appwide/admin_control' %>
     </div>
-    <%= render 'appwide/paginate', resources: @activities %>
-  </div>
-  <div class="col-lg-4">
-    <%= render 'appwide/links' %>
-  </div>
+    <div class="col-lg-8">
+      <%= render 'appwide/links' %>
+    </div>    
+
+  <% else %>
+
+    <div class="col-lg-2">
+      <%= render 'appwide/side_links' %>
+    </div>
+    <div id="newsfeed" class="col-lg-6">
+      <div id="activities">
+        <% if @activities.empty? %>
+          <div class="well">
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+          <%= render_activities(@activities, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+      <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+    <div class="col-lg-4">
+      <%= render 'appwide/links' %>
+    </div>
+
+  <% end %>
 </div>
