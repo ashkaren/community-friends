@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160405012804) do
+=======
 ActiveRecord::Schema.define(version: 20160405072021) do
+>>>>>>> bcff887ec8918248c8588d039e418e6123028b16
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
