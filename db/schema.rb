@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329223458) do
+ActiveRecord::Schema.define(version: 20160405012804) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20160329223458) do
     t.string   "role",                   default: "regular", null: false
     t.string   "sex",                    default: "",        null: false
     t.integer  "posts_count",            default: 0,         null: false
+    t.decimal  "point"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
