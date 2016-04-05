@@ -13,31 +13,17 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control', autofocus: true, placeholder: 'What is it?' %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address, class: 'form-control', autofocus: true, placeholder: 'Where is it?' %>
   </div>
   <div class="form-group">
         <%= f.label :when %><br>
         <%= f.datetime_select :when %>
   </div>
-  <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-  </div>
+  
   <div class="actions">
     <%= f.submit :create, class: 'btn btn-primary' %>
   </div>
