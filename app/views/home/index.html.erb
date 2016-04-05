@@ -1,10 +1,19 @@
 <div class="row row-no-padding">
   <% if current_user.admin? %>
 
-    <div class="col-lg-4">
-      <%= render 'appwide/admin_control' %>
+    <div id="newsfeed" class="col-lg-6 col-lg-offset-1">
+      <div id="activities">
+        <% if @activities.empty? %>
+          <div class="well">
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+          <%= render_activities(@activities, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+      <%= render 'appwide/paginate', resources: @activities %>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-4">
       <%= render 'appwide/links' %>
     </div>    
 
