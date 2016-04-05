@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :deactivate
     end
   end
+  resources :users
   resources :events, except: [:edit, :update]
 
   authenticated :user do

@@ -4,8 +4,16 @@ class UsersController < ApplicationController
   before_action :check_ownership, only: [:edit, :update]
   respond_to :html, :js
 
+  def index
+    @users = User.all
+  end
+
   def show
     @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @hash = Gmaps4rails.build_markers(@user) do |user, marker|
+      marker.lat user.latitude
+      marker.lng user.longitude
+    end
   end
 
   def edit

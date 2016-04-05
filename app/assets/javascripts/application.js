@@ -15,12 +15,14 @@
 //= require bootstrap
 //= require bindWithDelay
 //= require jquery.datetimepicker
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 
 $(document).ready(function(){
   $("#event_when").datetimepicker({
-    format:'Y/m/d H:i'
+    format:'m/d/Y H:i'
   });
   $("#user_dob").datetimepicker({
     timepicker:false,

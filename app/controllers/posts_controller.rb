@@ -13,9 +13,6 @@ class PostsController < ApplicationController
     else
       redirect_to welcome_path, notice: @post.errors.full_messages.first
     end
-
-    user.point = user.point+1
-    user.update_attributes(:point => user.point)
   end
 
   def edit
