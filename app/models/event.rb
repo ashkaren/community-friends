@@ -10,6 +10,6 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :name
   validates_presence_of :when
-  
+  validates_presence_of :address
   validates_presence_of :user
 end
