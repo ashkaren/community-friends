@@ -2,7 +2,7 @@
 
 <h1>Events </h1>
 
-<table>
+<table class="bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -29,5 +29,15 @@
 </table>
 
 <br>
+<%= month_calendar meetings: @meetings do |date, meetings| %>
+  <%= date.day %>
+
+  <% meetings.each do |meeting| %>
+    <div>
+      <%= meeting.name %>
+    </div>
+
+  <% end %>
+<% end %>
 
 <%= link_to 'New Event', new_meeting_path %>
