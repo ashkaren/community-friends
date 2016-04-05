@@ -3,11 +3,9 @@ class HomeController < ApplicationController
   respond_to :html, :js
 
   def index
-    if current_user.admin?
-      admin_view
-    else
-      user_view
-    end
+    @post = Post.new
+    @friends = @user.all_following.unshift(@user)
+    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def front

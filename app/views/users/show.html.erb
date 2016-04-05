@@ -7,8 +7,42 @@
     <%= render 'appwide/admin_control' %>
   </div>
 
+  <% elsif current_user.business? %>
+    <%= render 'appwide/cover', user: @user %>
+    <br>
+    <div id="user-<%= @user.id %>" class="row">
+      <div class="col-lg-5">
+        <%= render 'appwide/user_info' %>
+        <div style='width: 450px;'>
+          <div id="map" style='width: 450px; height: 200px;'></div>
+        </div>
+        <br>
+        <%= month_calendar meetings: @meetings do |date, meetings| %>
+          <%= date.day %>
+          <% meetings.each do |meeting| %>
+            <div>
+              <%= meeting.name %>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+        <div class="col-lg-7">
+          <div id="activities">
+            <%= render 'posts/form' %>
+            <br>
+            <% if @activities.empty? %>
+              <div class="well">
+                <%= render('appwide/no_resource', resources: 'Activities') %>
+              </div>
+            <% else %>
+              <%= render_activities(@activities, layout: '/appwide/activity') %>
+            <% end %>
+          </div>
+          <%= render 'appwide/paginate', resources: @activities %>
+        </div>
+      </div>
+    </div>
   <% else %>
-
   <%= render 'appwide/cover', user: @user %>
   <br>
   <div id="user-<%= @user.id %>" class="row">
