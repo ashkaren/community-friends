@@ -8,9 +8,9 @@
 User.delete_all
 
 user = User.create!(
-	:name => 'Admin', 
-	:email => 'admin@valdosta.edu', 
-	:password => 'password', 
+	:name => 'Admin',
+	:email => 'admin@valdosta.edu',
+	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
@@ -19,9 +19,9 @@ user = User.create!(
 )
 
 user = User.create!(
-	:name => 'Jason Castillo', 
-	:email => 'jhcastillo@valdosta.edu', 
-	:password => 'password', 
+	:name => 'Jason Castillo',
+	:email => 'jhcastillo@valdosta.edu',
+	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male'
@@ -30,9 +30,9 @@ user = User.create!(
 )
 
 user = User.create!(
-	:name => 'Gena Evtodiev', 
-	:email => 'gvevtodiev@valdosta.edu', 
-	:password => 'password', 
+	:name => 'Gena Evtodiev',
+	:email => 'gvevtodiev@valdosta.edu',
+	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male'
@@ -41,12 +41,22 @@ user = User.create!(
 )
 
 user = User.create!(
-	:name => 'Fifi Smith-Quayson', 
-	:email => 'fsmithquayson@valdosta.edu', 
-	:password => 'password', 
+	:name => 'Fifi Smith-Quayson',
+	:email => 'fsmithquayson@valdosta.edu',
+	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male'
 	:confirmed_at => '2016-04-05 00:44:30.309072'
+
+)
+
+user = User.create!(
+	:name => 'Chey J Visuals',
+	:email => 'csjaglal@valdosta.edu',
+	:password => 'password',
+	:password_confirmation => 'password',
+	:address => '1704 N Patterson St, Valdosta, GA',
+	:business => true
 
 )
