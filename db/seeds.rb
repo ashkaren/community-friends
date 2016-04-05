@@ -14,7 +14,7 @@ user = User.create!(
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
-	:role => 'Admin'
+	:role => 'Admin',
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 )
 
@@ -24,7 +24,7 @@ user = User.create!(
 	:password => 'password', 
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
-	:sex => 'Male'
+	:sex => 'Male',
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 
 )
@@ -35,7 +35,7 @@ user = User.create!(
 	:password => 'password', 
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
-	:sex => 'Male'
+	:sex => 'Male',
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 
 )
@@ -46,7 +46,7 @@ user = User.create!(
 	:password => 'password', 
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
-	:sex => 'Male'
+	:sex => 'Male',
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 
 )
