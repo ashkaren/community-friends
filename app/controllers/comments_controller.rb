@@ -22,4 +22,8 @@ class CommentsController < ApplicationController
     @commentable_type = params[:commentable_type].classify
     @commentable = @commentable_type.constantize.find(params[:commentable_id])
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 end
