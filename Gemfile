@@ -35,6 +35,7 @@ gem 'fog'
 
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'protected_attributes'
 
 
 group :development do

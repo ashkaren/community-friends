@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405185314) do
+ActiveRecord::Schema.define(version: 20160413230248) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 20160405185314) do
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_time"
@@ -82,6 +89,11 @@ ActiveRecord::Schema.define(version: 20160405185314) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "image_url"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -126,10 +138,12 @@ ActiveRecord::Schema.define(version: 20160405185314) do
     t.decimal  "point"
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
+    t.integer  "group_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["group_id"], name: "index_users_on_group_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "votes", force: :cascade do |t|

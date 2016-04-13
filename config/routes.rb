@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :memberships
+  resources :groups
   resources :meetings
   resources :posts
   resources :comments, only: [:create, :destroy]
@@ -11,6 +13,10 @@ Rails.application.routes.draw do
       get :deactivate
     end
   end
+  resources :groups do
+    get 'join', :on => :member
+  end
+
   resources :users
   resources :events, except: [:edit, :update]
 
