@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :memberships
-  resources :groups
   resources :meetings
   resources :posts
   resources :comments, only: [:create, :destroy]
