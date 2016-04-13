@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @posts = Post.all  
+  end
+
   def show
     @comments = @post.comments.all
   end

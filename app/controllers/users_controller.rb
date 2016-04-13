@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def index
-    @users = User.all
+    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")  
   end
 
   def show
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(current_user)
   end
 end
