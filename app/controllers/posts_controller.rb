@@ -29,9 +29,6 @@ class PostsController < ApplicationController
       format.js
       format.html { redirect_to welcome_path }
     end
-
-    user.point = user.point-1
-    user.update_attributes(:point => user.point)
   end
 
   private
@@ -42,4 +39,9 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content, :attachment)
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
 end

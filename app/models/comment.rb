@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  include Shared::Callbacks
   include ActsAsCommentable::Comment
 
   belongs_to :commentable, :polymorphic => true, :counter_cache => true
