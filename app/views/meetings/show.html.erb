@@ -10,5 +10,17 @@
   <%= @meeting.start_time %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= @meeting.image_url%>
+</p>
+
+<p>
+  <strong> Description:</strong>
+  <%= @meeting.description %>
+</p>
+
+
+
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>

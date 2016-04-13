@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405153634) do
+ActiveRecord::Schema.define(version: 20160405185314) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -78,8 +78,10 @@ ActiveRecord::Schema.define(version: 20160405153634) do
   create_table "meetings", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+    t.string   "image_url"
   end
 
   create_table "posts", force: :cascade do |t|

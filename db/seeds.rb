@@ -19,9 +19,9 @@ user = User.create!(
 )
 
 user = User.create!(
-	:name => 'Crime Stoppers', 
-	:email => 'crimestop@valdosta.edu', 
-	:password => 'password', 
+	:name => 'Crime Stoppers',
+	:email => 'crimestop@valdosta.edu',
+	:password => 'password',
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
@@ -70,6 +70,5 @@ user = User.create!(
 	:address => '1704 N Patterson St, Valdosta, GA',
 	:business => true,
 	:confirmed_at => '2016-04-05 00:44:30.309072'
-
 
 )
