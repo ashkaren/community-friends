@@ -4,6 +4,10 @@
     <h5><%= link_to @user.name, @user %></h5>
   </div>
   <h5>
+    <%= fa_icon 'star' %>
+    <%= pluralize(@user.point, 'points') %>
+  </h5>
+  <h5>
     <%= fa_icon 'shield' %>
     <%= pluralize(@user.posts_count, 'post') %>
   </h5>
