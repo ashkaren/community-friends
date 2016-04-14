@@ -44,3 +44,17 @@
     font-size: 0.8em;
   }
 }
+
+.chat-c {
+  background-color: white;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid $border-color;  
+
+  .title {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.07em;
+    font-size: 0.8em;
+  }
+}

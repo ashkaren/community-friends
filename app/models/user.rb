@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   acts_as_followable
 
   has_many :conversations, :foreign_key => :sender_id
+  after_create :create_default_conversation
   
   has_many :posts
   has_many :comments
@@ -22,5 +23,9 @@ class User < ActiveRecord::Base
   validates_presence_of :name
 
   self.per_page = 10
+  
+  def create_default_conversation
+    Conversation.create(sender_id: 1, recipient_id: self.id) unless self.id == 1
+  end
 
 end

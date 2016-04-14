@@ -3,7 +3,7 @@
 	<table class="bordered">
 	    <% @users.each do |user| %>
 	      <tr>
-	        <td>
+	        <th>
 	        	<%= image_tag(user.avatar.url, :width => 30)%>
 	        	<ul style="list-style: none;"> 
 					<li class="dropdown">
@@ -16,7 +16,7 @@
 						</ul>
 					</li>
 				</ul>	        
-			</td>
+			</th>
 	      </tr>
 	    <% end %>
 	</table>

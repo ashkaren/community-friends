@@ -18,6 +18,7 @@
     </div>   
 
   <% elsif current_user.business? %>
+
     <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
       <div id="activities">
         <% if @activities.empty? %>
@@ -30,6 +31,7 @@
       </div>
       <%= render 'appwide/paginate', resources: @activities %>
     </div>
+    
   <% else %>
 
     <div class="col-lg-2">
@@ -53,7 +55,7 @@
     <div class="col-lg-2">
       <%= render 'appwide/friends' %>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2 col-lg-offset-8">
       <%= render 'appwide/conversations' %>
     </div>
 

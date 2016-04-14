@@ -32,4 +32,8 @@ class HomeController < ApplicationController
   def set_user
     @user = current_user
   end
+
+  def interlocutor(conversation)
+    current_user == conversation.recipient ? conversation.sender : conversation.recipient
+  end
 end
