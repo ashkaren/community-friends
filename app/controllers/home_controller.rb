@@ -3,6 +3,8 @@ class HomeController < ApplicationController
   respond_to :html, :js
 
   def index
+    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+    @conversations = Conversation.involving(current_user).order("created_at DESC")  
     @post = Post.new
     @friends = @user.all_following.unshift(@user)
     @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)

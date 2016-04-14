@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   acts_as_follower
   acts_as_followable
 
+  has_many :conversations, :foreign_key => :sender_id
+  
   has_many :posts
   has_many :comments
   has_many :events
