@@ -5,11 +5,11 @@
   </div>
   <h5>
     <%= fa_icon 'star' %>
-    <%= pluralize(@user.point, 'points') %>
+    <%= pluralize((@user.point).round, 'points') %>
   </h5>
   <h5>
     <%= fa_icon 'shield' %>
-    <%= pluralize(@user.posts_count, 'post') %>
+    <%= pluralize(@user.posts_count, ' post') %>
   </h5>
   <h5>
     <%= fa_icon 'male' %>
