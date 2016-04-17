@@ -5,12 +5,20 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def index
-    @user.point = current_user.posts_count * 5
+    @user.point = 0
+    @user.posts.each do |post|
+      @user.point += post.cached_votes_up + post.comments_count
+    end
+    @user.point += current_user.posts_count * 5
     @users = User.where.not("id = ?",current_user.id).order("created_at DESC")  
   end
 
   def show
-    @user.point = current_user.posts_count * 5
+    @user.point = 0
+    @user.posts.each do |post|
+      @user.point += post.cached_votes_up + post.comments_count
+    end
+    @user.point += current_user.posts_count * 5
     @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude
