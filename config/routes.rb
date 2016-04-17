@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :groups
   resources :meetings
   resources :posts
   resources :comments, only: [:create, :destroy]
@@ -25,6 +24,10 @@ Rails.application.routes.draw do
   unauthenticated :user do
       root 'welcome#index', as: 'welcome'
     end
+
+  resources :conversations do
+    resources :messages
+  end
 
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
