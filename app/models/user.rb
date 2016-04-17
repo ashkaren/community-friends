@@ -20,8 +20,7 @@ class User < ActiveRecord::Base
 
   self.per_page = 10
 
-end
-
-class Assignment < ActiveRecord::Base
-  acts_as_group_member
+  def to_s
+    self.name
+  end
 end
