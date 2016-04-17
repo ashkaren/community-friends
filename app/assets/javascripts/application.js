@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require private_pub
+//= require chat
 //= require bindWithDelay
 //= require jquery.datetimepicker
 //= require underscore

@@ -1,25 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<div id="event-<%= @meeting.id %>" class="event">
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3 well">
-      <%= render @meeting, remote: false %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3 well">
-      <h4>Comments</h4>
-      <hr>
-      <%= render 'comments/form', commentable: @event %>
-      <br>
-      <div class="comments">
-        <%= render(@comments) || render('appwide/no_resource', resources: 'Comments') %>
-      </div>
-    </div>
+<div class="row">
+  <div class="well">
+    <%= @meeting.name %>
+    <%= @meeting.start_time %>
+    <%= @meeting.image_url%>
+    <%= @meeting.description %>
   </div>
 </div>
-
-
 
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>

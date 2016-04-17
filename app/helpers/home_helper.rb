@@ -6,4 +6,8 @@ module HomeHelper
   def formatted_time(time)
     time.to_formatted_s(:short)
   end
+
+  def conversation_interlocutor(conversation)
+    conversation.recipient == current_user ? conversation.sender : conversation.recipient
+  end
 end

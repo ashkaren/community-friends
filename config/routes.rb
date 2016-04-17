@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  post "groups/:id/leave", to: "groups#leave", as: :leave
 
+  post "groups/:id/leave", to: "groups#leave", as: :leave
+  
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
   get "/help", to: "static_pages#help", as: 'help'

@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -28,14 +27,14 @@ gem 'counter_culture', '~> 0.1.33'
 gem 'faker'
 gem 'populator'
 gem 'auto_html', '~>1.6.4'
-
 gem "simple_calendar", "~> 2.0"
 gem 'mini_magick'
 gem 'fog'
-
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'groupify'
+gem 'private_pub'
+gem 'thin'
+
 
 group :development do
   gem 'web-console', '~> 2.0'

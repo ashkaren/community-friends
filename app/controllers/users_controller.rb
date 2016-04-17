@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @user.point = current_user.posts_count * 5
+    @conversations = Conversation.involving(current_user).order("created_at DESC")
     @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude

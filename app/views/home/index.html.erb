@@ -18,6 +18,7 @@
     </div>   
 
   <% elsif current_user.business? %>
+
     <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
       <div id="activities">
         <% if @activities.empty? %>
@@ -30,12 +31,13 @@
       </div>
       <%= render 'appwide/paginate', resources: @activities %>
     </div>
+    
   <% else %>
 
     <div class="col-lg-2">
       <%= render 'appwide/side_links' %>
     </div>
-    <div id="newsfeed" class="col-lg-6">
+    <div id="newsfeed" class="col-lg-5">
       <div id="activities">
         <% if @activities.empty? %>
           <div class="well">
@@ -47,8 +49,14 @@
       </div>
       <%= render 'appwide/paginate', resources: @activities %>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <%= render 'appwide/links' %>
+    </div>
+    <div class="col-lg-2">
+      <%= render 'appwide/friends' %>
+    </div>
+    <div class="col-lg-2 col-lg-offset-8">
+      <%= render 'appwide/conversations' %>
     </div>
 
   <% end %>
