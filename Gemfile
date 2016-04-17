@@ -35,8 +35,7 @@ gem 'fog'
 
 gem 'geocoder'
 gem 'gmaps4rails'
-
-
+gem 'groupify'
 
 group :development do
   gem 'web-console', '~> 2.0'

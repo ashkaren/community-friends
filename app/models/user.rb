@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships
-  
+  belongs_to :group
+
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
   acts_as_voter
@@ -21,4 +20,8 @@ class User < ActiveRecord::Base
 
   self.per_page = 10
 
+end
+
+class Assignment < ActiveRecord::Base
+  acts_as_group_member
 end
