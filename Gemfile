@@ -34,8 +34,6 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'private_pub'
 gem 'thin'
-gem 'foreman'
-
 
 group :development do
   gem 'web-console', '~> 2.0'
