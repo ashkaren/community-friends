@@ -11,6 +11,10 @@ Rails.application.routes.draw do
       get :deactivate
     end
   end
+  resources :groups do
+    get 'join', :on => :member
+  end
+
   resources :users
   resources :events, except: [:edit, :update]
 
@@ -21,6 +25,13 @@ Rails.application.routes.draw do
       root 'welcome#index', as: 'welcome'
     end
 
+  resources :conversations do
+    resources :messages
+  end
+
+
+  post "groups/:id/leave", to: "groups#leave", as: :leave
+  
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
   get "/help", to: "static_pages#help", as: 'help'

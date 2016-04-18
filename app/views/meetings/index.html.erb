@@ -2,11 +2,13 @@
 
 <h1>Events </h1>
 
+<div class=" well">
 <table class="bordered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Start time</th>
+      <th colspan="5">Options</th>
     </tr>
   </thead>
 
@@ -18,8 +20,8 @@
         <td><%= meeting.name %></td>
 
         <td><%= meeting.start_time %></td>
-        <td><%= image_tag(meeting.image_url, class: 'list_image') %></td>
-        <td><%= meeting.description %></td>
+         <!--  <td><%= image_tag(meeting.image_url, class: 'list_image') %></td>
+        <td><%= meeting.description %></td> -->
         <td><%= link_to 'Show', meeting %></td>
         <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
         <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,6 +29,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 <%= month_calendar events: @meetings do |date, meetings| %>

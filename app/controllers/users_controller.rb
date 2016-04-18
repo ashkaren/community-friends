@@ -61,4 +61,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(current_user)
   end
+  def set_group
+    @group = Group.find(params[:id])
+  end
 end
