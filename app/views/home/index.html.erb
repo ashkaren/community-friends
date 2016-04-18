@@ -1,6 +1,6 @@
 <div class="row row-no-padding">
-  <% if current_user.admin? %>
 
+  <% if current_user.admin? %>
     <div id="newsfeed" class="col-lg-6 col-lg-offset-1">
       <div id="activities">
         <% if @activities.empty? %>
@@ -30,303 +30,287 @@
       </div>
       <%= render 'appwide/paginate', resources: @activities %>
     </div>
-  <% else %>
 
+  <% else %>
     <div class="col-lg-2">
       <%= render 'appwide/side_links' %>
     </div>
-    <ul class="col-lg-6 nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#all">All Activities</a></li>
-      <li><a data-toggle="tab" href="#work">Work</a></li>
-      <li><a data-toggle="tab" href="#forsale">For sale</a></li>
-      <li><a data-toggle="tab" href="#party">Party</a></li>
-      <li><a data-toggle="tab" href="#alert">Alert</a></li>
-      <li><a data-toggle="tab" href="#news">News</a></li>
-      <li><a data-toggle="tab" href="#broadcast">Broadcast</a></li>
+    <div class="col-lg-6">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#all">All Activities</a></li>
+        <li><a data-toggle="tab" href="#work">Work</a></li>
+        <li><a data-toggle="tab" href="#forsale">For sale</a></li>
+        <li><a data-toggle="tab" href="#party">Party</a></li>
+        <li><a data-toggle="tab" href="#alert">Alert</a></li>
+        <li><a data-toggle="tab" href="#news">News</a></li>
+        <li><a data-toggle="tab" href="#broadcast">Broadcast</a></li>
       </ul>
       <div class="tab-content">
-      <div id="all" class="tab-pane fade in active">
-      <div id="newsfeed" class="col-lg-6">
-            <div id="activities">
-              <% if @activities.empty? %>
+        <div id="all" class="tab-pane fade in active">
+          <div id="activities">
+            <% if @activities.empty? %>
+              <div class="well">
+                <%= render('appwide/no_resource', resources: 'Activities') %>
+              </div>
+            <% else %>
+              <%= render_activities(@activities, layout: '/appwide/activity') %>
+            <% end %>
+          </div>
+          <%= render 'appwide/paginate', resources: @activities %>
+        </div>        
+
+        <div id="work" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "Work" %>
+              <div id="post-<%= @post.id %>" class="post">
                 <div class="well">
-                  <%= render('appwide/no_resource', resources: 'Activities') %>
-                </div>
-              <% else %>
-                <%= render_activities(@activities, layout: '/appwide/activity') %>
-              <% end %>
-            </div>
-            <%= render 'appwide/paginate', resources: @activities %>
-          </div>
-          
-
-      </div>
-
-      <div id="work" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "Work" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
-            <div id="forsale" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "For sale" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
+
+      <div id="forsale" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "For sale" %>
+              <div id="post-<%= @post.id %>" class="post">
+                <div class="well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
-            <div id="party" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "Party" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
+
+      <div id="party" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "Party" %>
+              <div id="post-<%= @post.id %>" class="post">
+                <div class="well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
-            <div id="alert" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "Alert" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
+
+      <div id="alert" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "Alert" %>
+              <div id="post-<%= @post.id %>" class="post">
+                <div class="well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
-            <div id="news" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "News" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
+
+      <div id="news" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "News" %>
+              <div id="post-<%= @post.id %>" class="post">
+                <div class="well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
-            <div id="broadcast" class="tab-pane fade in active">
-        <% @posts.reverse.each do |post| %>
-          <% if post.category == "Broadcast" %>
-                <div id="post-<%= @post.id %>" class="post">
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 well">
+
+      <div id="broadcast" class="tab-pane fade in active">
+          <% @posts.each do |post| %>
+            <% if post.category == "Broadcast" %>
+              <div id="post-<%= @post.id %>" class="post">
+                <div class="well">
                   <div class="info">
-                  <%= render 'appwide/avatar', user: post.user %>
-                  <h4 class="name"><%= post.user.name %></h4>
-                  <span class="action">created a <%= link_to 'post', post %></span>
-                </div>
-                <div class="content">
-                  <span class="text"><%= post.content_html %></span>
-                  <% if post.attachment.present? %>
-                    <div class="attachment">
-                      <%= image_tag post.attachment %>
-                    </div>
-                  <% end %>
-                  <%= render 'appwide/created_at', activity: post %>
-                  <div class="points">
-                    <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                    <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                    <div class="pull-right">
-                      <% if belongs_to_user?(post) %>
-                        <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                          <% fa_icon 'pencil' %>
+                    <%= render 'appwide/avatar', user: post.user %>
+                    <h4 class="name"><%= post.user.name %></h4>
+                    <span class="action">created a <%= link_to 'post', post %></span>
+                  </div>
+                  <div class="content">
+                    <span class="text"><%= post.content_html %></span>
+                    <% if post.attachment.present? %>
+                      <div class="attachment">
+                        <%= image_tag post.attachment %>
+                      </div>
+                    <% end %>
+                    <%= render 'appwide/created_at', activity: post %>
+
+                    <div class="points">
+                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
+                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
+                      <div class="pull-right">
+                        <% if belongs_to_user?(post) %>
+                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
+                            <% fa_icon 'pencil' %>
+                          <% end %>
+                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
+                            <% fa_icon 'trash' %>
+                          <% end %>
                         <% end %>
-                        <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                          <% fa_icon 'trash' %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <%= render 'appwide/actions', resource: post %>
-                </div>
               </div>
-              
             </div>
           <% end %>
         <% end %>  
-
       </div>
+
     </div>
-    <div class="col-lg-4">
-            <%= render 'appwide/links' %>
-          </div>
+  </div>
+
+  <div class="col-lg-4">
+      <%= render 'appwide/links' %>
+  </div>
+
   <% end %>
 </div>
-
-
-
-
