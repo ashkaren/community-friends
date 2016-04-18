@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   counter_culture :user
   acts_as_votable
   acts_as_commentable
-  CATEGORY = ['Work', 'For sale', 'Party', 'Alert', 'News', 'Broadcast']
+  CATEGORY = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
 
   include PublicActivity::Model
   tracked only: [:create, :like], owner: Proc.new{ |controller, model| model.user }

@@ -72,3 +72,15 @@ user = User.create!(
 	:confirmed_at => '2016-04-05 00:44:30.309072'
 
 )
+
+user = User.create!(
+	:name => 'Zhiguang Xu',
+	:email => 'zxu@valdosta.edu',
+	:password => 'password',
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male',
+	:lead => true,
+	:confirmed_at => '2016-04-05 00:44:30.309072'
+
+)

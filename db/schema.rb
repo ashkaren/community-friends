@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417145345) do
+ActiveRecord::Schema.define(version: 20160418214328) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160417145345) do
     t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
@@ -156,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160417145345) do
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
     t.integer  "group_id"
+    t.boolean  "lead",                   default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

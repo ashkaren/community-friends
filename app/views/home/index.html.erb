@@ -41,7 +41,7 @@
         <li class="active"><a data-toggle="tab" href="#all">All</a></li>
         <li><a data-toggle="tab" href="#work">Work</a></li>
         <li><a data-toggle="tab" href="#forsale">For Sale</a></li>
-        <li><a data-toggle="tab" href="#party">Events</a></li>
+        <li><a data-toggle="tab" href="#events">Events</a></li>
         <li><a data-toggle="tab" href="#news">News</a></li>
         <li><a data-toggle="tab" href="#broadcast">Broadcasts</a></li>
       </ul>
@@ -141,50 +141,9 @@
         <% end %>  
       </div>
 
-      <div id="party" class="tab-pane fade in active">
+      <div id="events" class="tab-pane fade in active">
           <% @posts.each do |post| %>
-            <% if post.category == "Party" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>  
-      </div>
-
-      <div id="alert" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "Alert" %>
+            <% if post.category == "Events" %>
               <div id="post-<%= @post.id %>" class="post">
                 <div class="well">
                   <div class="info">
@@ -266,7 +225,7 @@
 
       <div id="broadcast" class="tab-pane fade in active">
           <% @posts.each do |post| %>
-            <% if post.category == "Broadcast" %>
+            <% if post.category == "Broadcasts" %>
               <div id="post-<%= @post.id %>" class="post">
                 <div class="well">
                   <div class="info">
