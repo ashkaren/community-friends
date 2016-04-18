@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(version: 20160417145345) do
     t.decimal  "point"
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
-    t.string   "category"
     t.integer  "group_id"
   end
 
