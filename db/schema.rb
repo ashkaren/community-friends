@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160413231542) do
-
+ActiveRecord::Schema.define(version: 20160417145345) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -103,7 +101,6 @@ ActiveRecord::Schema.define(version: 20160413231542) do
     t.string   "image_url"
   end
 
-
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"
@@ -158,11 +155,8 @@ ActiveRecord::Schema.define(version: 20160413231542) do
     t.decimal  "point"
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
-<<<<<<< HEAD
     t.string   "category"
-=======
     t.integer  "group_id"
->>>>>>> d0d4785736ce814a2e2b666980534a9dd16dee8c
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
