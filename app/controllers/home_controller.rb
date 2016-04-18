@@ -25,6 +25,12 @@ class HomeController < ApplicationController
     @friends = @user.all_following.unshift(@user)
     @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
+  def promote
+    user = User.find(params[:id])
+    user.update_column(:lead, true)
+    flash[:notice] = "#{user.name} was successfully promoted to lead"
+    redirect_to users_path
+  end
 
   def company_view
   end

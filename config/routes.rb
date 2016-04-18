@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
   get "/help", to: "static_pages#help", as: 'help'
+  post 'home/promote'
 
   match :follow, to: 'follows#create', as: :follow, via: :post
   match :unfollow, to: 'follows#destroy', as: :unfollow, via: :post
