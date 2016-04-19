@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160413183500) do
-
+ActiveRecord::Schema.define(version: 20160417145345) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -102,7 +100,6 @@ ActiveRecord::Schema.define(version: 20160413183500) do
     t.text     "description"
     t.string   "image_url"
   end
-
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
