@@ -21,4 +21,10 @@
       <%= @user.address %>
     </h5>
   <% end %>
+  <% if @user.group_id.present? %>
+    <h5>
+      <%= fa_icon 'group' %>
+      <%= @user.group_id%>
+    </h5>
+  <% end %>
 </div>
