@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       end
       user.point += current_user.posts_count * 5
     end
-    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")  
+    @users = User.where.not("id = ?",current_user.id).order("point DESC")  
   end
 
   def show

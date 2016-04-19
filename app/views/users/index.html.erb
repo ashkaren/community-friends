@@ -1,4 +1,4 @@
-<% if signed_in? && current_user.lead? %>
+<% if signed_in? && (current_user.lead? || current_user.admin?) %>
 
 
 
@@ -10,17 +10,21 @@
           <tr>
             <th>Name</th>
             <th>Points</th>
+            <th>Votes</th>
             <th colspan="4"></th>
           </tr>
         </thead>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.point %></td>
-            <td><%= link_to 'Show', user, 'data-no-turbolink' => true %></td>
-            <td><%= link_to 'Edit', edit_user_path(user) %></td>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td><%= button_to 'Promote', home_promote_path(:id => user.id), method: :post, class: 'pull-right btn btn-primary' %></td>
+            <% if !(user.lead? && user.admin?) %>
+              <td><%= user.name %></td>
+              <td><%= (user.point).round %></td>
+              <td><%=  %></td>
+              <td><%= link_to 'Show', user, 'data-no-turbolink' => true %></td>
+              <td><%= link_to 'Edit', edit_user_path(user) %></td>
+              <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= button_to 'Promote', home_promote_path(:id => user.id), method: :post, class: 'pull-right btn btn-primary' %></td>
+            <% end %> 
           </tr>
         <% end %>
       </table>
@@ -28,5 +32,33 @@
       <%= link_to 'Back', user_path(current_user) %>
     </div>
   </div>
+  <% else %>
+    <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 well">
+      <h3>Registered Users</h3>
+      <table class="bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Points</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <% @users.each do |user| %>
+          <tr>
+            <% if !(user.lead? && user.admin?) %>
+              <td><%= user.name %></td>
+              <td><%= (user.point).round %></td>
+              <td><%= link_to 'Show', user, 'data-no-turbolink' => true %></td>
+              <td><%= button_to 'Vote', home_vote_path(:id => user.id), method: :get, class: 'pull-right btn btn-primary' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <br>
+      <%= link_to 'Back', user_path(current_user) %>
+    </div>
+  </div>
+
 <% end %>
   
