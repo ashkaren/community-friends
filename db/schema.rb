@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418214328) do
+ActiveRecord::Schema.define(version: 20160418235736) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -157,9 +157,11 @@ ActiveRecord::Schema.define(version: 20160418214328) do
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
     t.integer  "group_id"
+    t.boolean  "approved",               default: false, null: false
     t.boolean  "lead",                   default: false
   end
 
+  add_index "users", ["approved"], name: "index_users_on_approved"
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["group_id"], name: "index_users_on_group_id"

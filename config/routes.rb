@@ -41,4 +41,6 @@ Rails.application.routes.draw do
   match :like, to: 'likes#create', as: :like, via: :post
   match :unlike, to: 'likes#destroy', as: :unlike, via: :post
   match :find_friends, to: 'home#find_friends', as: :find_friends, via: :get
+
+  match 'users/:id/approve'=> 'users#approve_user', as: 'approve_user', via: :get
 end

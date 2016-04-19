@@ -11,10 +11,12 @@
     <%= fa_icon 'newspaper-o' %>
     <%= link_to 'Activity', welcome_path %>
   </h5>
-  <h5>
-    <%= fa_icon 'child' %>
-    <%= link_to 'Friends', welcome_path %>
-  </h5>
+  <% if current_user.lead? %>
+    <h5>
+      <%= fa_icon 'child' %>
+      <%= link_to 'Pending', users_path(:action => "index", :approved => "false") %>
+    </h5>
+  <% end %>
   <h5>
     <%= fa_icon 'group' %>
     <%= link_to 'Groups', groups_path %>

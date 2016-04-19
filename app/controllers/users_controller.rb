@@ -10,7 +10,11 @@ class UsersController < ApplicationController
       @user.point += post.cached_votes_up + post.comments_count
     end
     @user.point += current_user.posts_count * 5
-    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")  
+    if params[:approved] == "false"
+      @users = User.where("approved = ?", false).order("created_at DESC")
+    else
+      @users = User.where.not("id = ?",current_user.id).order("created_at DESC") 
+    end
   end
 
   def show
@@ -38,6 +42,17 @@ class UsersController < ApplicationController
   end
 
   def deactivate
+  end
+
+  def approve_user
+    user = User.find(params[:id])
+    user.approved = true
+    if user.save
+      flash[:notice] = "#{user.name} has been approved"
+    else
+      flash[:alert] = "#{user.name} approval failure"
+    end
+    redirect_to :back
   end
 
   def friends
