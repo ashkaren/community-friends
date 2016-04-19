@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418213955) do
+ActiveRecord::Schema.define(version: 20160419193850) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -99,7 +99,10 @@ ActiveRecord::Schema.define(version: 20160418213955) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "image_url"
+    t.integer  "user_id"
   end
+
+  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id"
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
@@ -158,7 +161,10 @@ ActiveRecord::Schema.define(version: 20160418213955) do
     t.string   "category"
     t.integer  "group_id"
     t.boolean  "lead",                   default: false
+    t.integer  "votes",                  default: 0
     t.integer  "vote",                   default: 0
+    t.integer  "cached_votes_up",        default: 0
+    t.integer  "comments_count",         default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

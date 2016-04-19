@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @comments = @event.comments
+    @comments = @event.comments.all
     @hash = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   end
 
   def user_view
-    @comments = @event.comments
+    @comments = @event.comments.all
     @hash = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude

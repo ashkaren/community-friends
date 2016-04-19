@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <div class="well">
-    <%= @meeting.name %>
-    <%= @meeting.start_time %>
-    <%= @meeting.image_url%>
-    <%= @meeting.description %>
-  </div>
+
+  <div class="col-lg-6 col-lg-offset-3 well">
+      <%= render @meeting, remote: false %>
+      <%= link_to 'Back', meetings_path %>
+    </div>
 </div>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+
+
