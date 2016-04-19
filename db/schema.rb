@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419193850) do
+ActiveRecord::Schema.define(version: 20160418235736) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160419193850) do
     t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
@@ -158,15 +159,21 @@ ActiveRecord::Schema.define(version: 20160419193850) do
     t.decimal  "point"
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
-    t.string   "category"
     t.integer  "group_id"
+<<<<<<< HEAD
     t.boolean  "lead",                   default: false
     t.integer  "votes",                  default: 0
     t.integer  "vote",                   default: 0
     t.integer  "cached_votes_up",        default: 0
     t.integer  "comments_count",         default: 0
+=======
+    t.integer  "vote",                   default: 0
+    t.boolean  "approved",               default: false, null: false
+    t.boolean  "lead",                   default: false
+>>>>>>> acb3fba056e253b3e804f2ccaca8ddb3c79c8530
   end
 
+  add_index "users", ["approved"], name: "index_users_on_approved"
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["group_id"], name: "index_users_on_group_id"

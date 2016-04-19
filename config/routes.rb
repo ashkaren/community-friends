@@ -29,18 +29,23 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :messages
+
 
   post "groups/:id/leave", to: "groups#leave", as: :leave
   
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
   get "/help", to: "static_pages#help", as: 'help'
-  post 'home/promote'
-  get 'home/vote'
+
 
   match :follow, to: 'follows#create', as: :follow, via: :post
   match :unfollow, to: 'follows#destroy', as: :unfollow, via: :post
   match :like, to: 'likes#create', as: :like, via: :post
   match :unlike, to: 'likes#destroy', as: :unlike, via: :post
   match :find_friends, to: 'home#find_friends', as: :find_friends, via: :get
+
+  match 'users/:id/approve'=> 'users#approve_user', as: 'approve_user', via: :get
+  match 'users/:id/vote'=> 'users#vote_user', as: 'vote_user', via: :get
+  match 'users/:id/promote'=> 'users#promote_user', as: 'promote_user', via: :get
 end

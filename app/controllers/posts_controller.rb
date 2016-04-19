@@ -7,12 +7,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @categories = ['Work', 'For sale', 'Party', 'Alert', 'News', 'Broadcast']
+    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
     @comments = @post.comments.all
   end
 
   def create
-    @categories = ['Work', 'For sale', 'Party', 'Alert', 'News', 'Broadcast']
+    @categories = ['Work', 'For sale', 'Events','News', 'Broadcasts']
     @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to welcome_path
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @categories = ['Work', 'For sale', 'Party', 'Alert', 'News', 'Broadcast']
+    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
     @post.update(post_params)
     redirect_to @post
   end
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
 
   private
   def set_categories
-    @categories = ['Work', 'For sale', 'Party', 'Alert', 'News', 'Broadcast']
+    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
   end
   def set_post
     @post = Post.find(params[:id])

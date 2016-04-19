@@ -15,7 +15,7 @@
     <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
     <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
     <div class="pull-right">
-      <% if belongs_to_user?(post) %>
+      <% if belongs_to_user?(post) || current_user.admin? || current_user.lead? %>
         <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
           <% fa_icon 'pencil' %>
         <% end %>

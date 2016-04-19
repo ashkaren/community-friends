@@ -15,7 +15,8 @@ user = User.create!(
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
 	:confirmed_at => '2016-04-05 00:44:30.309072',
-	:admin => true
+	:admin => true,
+	:approved => true
 )
 
 user = User.create!(
@@ -26,7 +27,8 @@ user = User.create!(
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
 	:confirmed_at => '2016-04-05 00:44:30.309072',
-	:business => true
+	:business => true,
+	:approved => true
 )
 
 user = User.create!(
@@ -36,7 +38,8 @@ user = User.create!(
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
-	:confirmed_at => '2016-04-05 00:44:30.309072'
+	:confirmed_at => '2016-04-05 00:44:30.309072',
+	:approved => true
 
 )
 
@@ -47,7 +50,8 @@ user = User.create!(
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
-	:confirmed_at => '2016-04-05 00:44:30.309072'
+	:confirmed_at => '2016-04-05 00:44:30.309072',
+	:approved => true
 
 )
 
@@ -58,7 +62,8 @@ user = User.create!(
 	:password_confirmation => 'password',
 	:address => '1500 N Patterson St, Valdosta, GA',
 	:sex => 'Male',
-	:confirmed_at => '2016-04-05 00:44:30.309072'
+	:confirmed_at => '2016-04-05 00:44:30.309072',
+	:approved => true
 
 )
 
@@ -69,6 +74,31 @@ user = User.create!(
 	:password_confirmation => 'password',
 	:address => '1704 N Patterson St, Valdosta, GA',
 	:business => true,
-	:confirmed_at => '2016-04-05 00:44:30.309072'
+	:confirmed_at => '2016-04-05 00:44:30.309072',
+	:approved => true
+
+)
+
+user = User.create!(
+	:name => 'Zhiguang Xu',
+	:email => 'zxu@valdosta.edu',
+	:password => 'password',
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Male',
+	:lead => true,
+	:confirmed_at => '2016-04-05 00:44:30.309072',
+	:approved => true
+
+)
+
+user = User.create!(
+	:name => 'Cherina Meighan',
+	:email => 'ccmeighan@valdosta.edu',
+	:password => 'password',
+	:password_confirmation => 'password',
+	:address => '1500 N Patterson St, Valdosta, GA',
+	:sex => 'Female',
+	:confirmed_at => '2016-04-05 00:44:30.309072',
 
 )
