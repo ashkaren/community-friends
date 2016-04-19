@@ -5,7 +5,7 @@
   </h5>
   <h5>
     <%= fa_icon 'envelope' %>
-    <%= link_to 'Messages', welcome_path %>
+    <%= link_to 'Messages', messages_path %>
   </h5>
   <h5>
     <%= fa_icon 'newspaper-o' %>
@@ -31,7 +31,7 @@
   </h5>
   <h5>
     <%= fa_icon 'arrow-circle-up' %>
-    <%= link_to 'Leads', welcome_path %>
+    <%= link_to 'Leads', users_path(:action => "index", :leads => "true") %>
   </h5>
   <h5>
     <%= fa_icon 'thumbs-up' %>

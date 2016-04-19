@@ -15,12 +15,13 @@ class UsersController < ApplicationController
     end
     @user.point += current_user.posts_count * 5
     if params[:approved] == "false"
-      @users = User.where("approved = ?", false).order("created_at DESC")
-    else
-      @users = User.where.not("id = ?",current_user.id).order("created_at DESC") 
-    end
-    if params[:vote] == "true"
+      @users = User.where("approved = ?", false).order("created_at DESC") 
+    elsif params[:vote] == "true"
       @users = User.where.not("id = ?",current_user.id).order("point DESC")
+    elsif params[:leads] == "true"
+      @users = User.where(:lead => true).order("point DESC")
+    else
+      @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     end 
   end
 
@@ -59,6 +60,28 @@ class UsersController < ApplicationController
       flash[:notice] = "#{user.name} has been approved"
     else
       flash[:alert] = "#{user.name} approval failure"
+    end
+    redirect_to :back
+  end
+
+  def vote_user
+    user = User.find(params[:id])
+    user.update_column(:vote, user[:vote] + 1)
+    if user.save
+      flash[:notice] = "You have successfully voted for #{user.name}"
+    else
+      flash[:alert] = "#{user.name} voting failure"
+    end
+    redirect_to :back
+  end
+
+  def promote_user
+    user = User.find(params[:id])
+    user.lead = true
+    if user.save
+      flash[:notice] = "#{user.name} has been promoted"
+    else
+      flash[:alert] = "#{user.name} promote failure"
     end
     redirect_to :back
   end

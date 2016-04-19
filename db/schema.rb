@@ -157,9 +157,9 @@ ActiveRecord::Schema.define(version: 20160418235736) do
     t.boolean  "admin",                  default: false
     t.boolean  "business",               default: false
     t.integer  "group_id"
+    t.integer  "vote",                   default: 0
     t.boolean  "approved",               default: false, null: false
     t.boolean  "lead",                   default: false
-    t.integer  "vote",                   default: 0
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved"
