@@ -103,8 +103,6 @@ ActiveRecord::Schema.define(version: 20160418235736) do
     t.integer  "user_id"
   end
 
-  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id"
-
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"

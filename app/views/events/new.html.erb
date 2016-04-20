@@ -1,7 +1,11 @@
-<h1>New Event</h1>
-
-<div class="col-lg-6 well">
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'appwide/user_info' %>
+  </div>
+  <div class="col-lg-6 well">
     <%= render 'form' %>
-    <br>
-    <%= link_to 'Back', events_path %>
+  </div>
+  <div class="col-lg-3">
+    <%= render 'appwide/links' %>
+  </div>
 </div>
