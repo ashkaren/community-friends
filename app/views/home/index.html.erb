@@ -142,45 +142,17 @@
       </div>
 
       <div id="events" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "Events" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
+          <div id="events">
+            <% if @events.empty? %>
+              <div class="well">
+                <%= render('appwide/no_resource', resources: 'Activities') %>
               </div>
-            </div>
-          <% end %>
-        <% end %>  
-      </div>
+            <% else %>
+              <%= render_activities(@events, layout: '/appwide/activity') %>
+            <% end %>
+          </div>
+          <%= render 'appwide/paginate', resources: @events %>
+        </div> 
 
       <div id="news" class="tab-pane fade in active">
           <% @posts.each do |post| %>

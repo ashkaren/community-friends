@@ -4,7 +4,7 @@ module HomeHelper
   end
 
   def formatted_time(time)
-    time.to_formatted_s(:short)
+    time.strftime('%a %b %d, %I:%M %p')
   end
 
   def conversation_interlocutor(conversation)

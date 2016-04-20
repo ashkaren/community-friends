@@ -23,12 +23,12 @@
 
 
 $(document).ready(function(){
-  $("#event_when").datetimepicker({
-    format:'m/d/Y H:i'
-  });
+  $('#event_start_time').datetimepicker({dateFormat: 'yy-mm-dd ', timeFormat: 'hh:mm:ss '});
   $("#user_dob").datetimepicker({
     timepicker:false,
     format:'Y/m/d',
     maxDate:'0'
   });
 });
+
+

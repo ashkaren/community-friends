@@ -6,6 +6,15 @@
 <div class="content">
   <h3><%= event.name %></h3>
   <span class="text">
+    <%= fa_icon'calendar' %> <%= formatted_time(event.start_time) %>
+  </span>
+  <br>
+  <span class="text">
+    <%= fa_icon'map-marker' %> <%= event.address %>
+  </span>
+  <br>
+  <span class="text">
+    <%= fa_icon'pencil' %> <%= event.description %>
   </span>
   <%= render 'appwide/created_at', activity: event %>
   <div class="points">
