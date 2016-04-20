@@ -1,46 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'appwide/side_links' %>
+  </div>
+  <div class="col-lg-9 well">
+    <h1>Current Events</h1>
+    <br>
+    <%= month_calendar events: @meetings do |date, meetings| %>
+      <%= date.day %>
 
-<h1>Events </h1>
-
-<div class=" well">
-<table class="bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th colspan="5">Options</th>
-    </tr>
-  </thead>
-
-
-
-  <tbody>
-    <% @meetings.each do |meeting| %>
-      <tr>
-        <td><%= meeting.name %></td>
-
-        <td><%= meeting.start_time %></td>
-         <!--  <td><%= image_tag(meeting.image_url, class: 'list_image') %></td>
-        <td><%= meeting.description %></td> -->
-        <td><%= link_to 'Show', meeting %></td>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% meetings.each do |meeting| %>
+        <div>
+          <%= link_to meeting.name, meeting %>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+    <br>
+  </div>
 </div>
-
-<br>
-<%= month_calendar events: @meetings do |date, meetings| %>
-  <%= date.day %>
-
-  <% meetings.each do |meeting| %>
-    <div>
-      <%= meeting.name %>
-    </div>
-  <% end %>
-<% end %>
-
-
-<%= link_to 'New Event', new_meeting_path %>

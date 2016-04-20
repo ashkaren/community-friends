@@ -10,16 +10,16 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <h2> Create New Group </h2>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, placeholder: 'Group Name', class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: 'About', class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :create, class: 'btn btn-primary' %>
   </div>
 <% end %>

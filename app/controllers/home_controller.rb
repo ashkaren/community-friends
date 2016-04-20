@@ -26,15 +26,6 @@ class HomeController < ApplicationController
     @users =  User.where.not(id: @friends.unshift(@user)).paginate(page: params[:page])
   end
 
-  def admin_view
-    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-  end
-
-  def user_view
-    @post = Post.new
-    @friends = @user.all_following.unshift(@user)
-    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-  end
   def promote
     user = User.find(params[:id])
     user.update_column(:lead, true)
