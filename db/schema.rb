@@ -64,9 +64,6 @@ ActiveRecord::Schema.define(version: 20160418235736) do
     t.datetime "updated_at",                  null: false
     t.integer  "cached_votes_up", default: 0
     t.integer  "comments_count",  default: 0
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "address"
   end
 
   add_index "events", ["cached_votes_up"], name: "index_events_on_cached_votes_up"
