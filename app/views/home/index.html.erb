@@ -15,7 +15,7 @@
     </div>
     <div class="col-lg-4">
       <%= render 'appwide/links' %>
-    </div>   
+    </div>
 
   <% elsif current_user.business? %>
     <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-lg-5">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#all">All</a></li>
+        <li class="active"><%=link_to 'All', welcome_path %></li>
         <li><a data-toggle="tab" href="#work">Work</a></li>
         <li><a data-toggle="tab" href="#forsale">For Sale</a></li>
         <li><a data-toggle="tab" href="#events">Events</a></li>
@@ -52,11 +52,11 @@
                 <%= render('appwide/no_resource', resources: 'Activities') %>
               </div>
             <% else %>
-              <%= render_activities(@activities, layout: '/appwide/activity') %>
+
             <% end %>
           </div>
           <%= render 'appwide/paginate', resources: @activities %>
-        </div>        
+        </div>
 
         <div id="work" class="tab-pane fade in active">
           <% @posts.each do |post| %>
@@ -96,7 +96,7 @@
               </div>
             </div>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
 
       <div id="forsale" class="tab-pane fade in active">
@@ -137,7 +137,7 @@
               </div>
             </div>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
 
       <div id="events" class="tab-pane fade in active">
@@ -151,7 +151,7 @@
             <% end %>
           </div>
           <%= render 'appwide/paginate', resources: @events %>
-        </div> 
+        </div>
 
       <div id="news" class="tab-pane fade in active">
           <% @posts.each do |post| %>
@@ -191,7 +191,7 @@
               </div>
             </div>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
 
       <div id="broadcast" class="tab-pane fade in active">
@@ -232,7 +232,7 @@
               </div>
             </div>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
     </div>
   </div>
