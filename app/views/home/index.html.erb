@@ -140,7 +140,18 @@
         <% end %>  
       </div>
 
-      
+      <div id="events" class="tab-pane fade in active">
+          <div id="events">
+            <% if @events.empty? %>
+              <div class="well">
+                <%= render('appwide/no_resource', resources: 'Activities') %>
+              </div>
+            <% else %>
+              <%= render_activities(@events, layout: '/appwide/activity') %>
+            <% end %>
+          </div>
+          <%= render 'appwide/paginate', resources: @events %>
+        </div> 
 
       <div id="news" class="tab-pane fade in active">
           <% @posts.each do |post| %>
