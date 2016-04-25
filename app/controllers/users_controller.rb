@@ -15,17 +15,18 @@ class UsersController < ApplicationController
     end
     @user.point += current_user.posts_count * 5
     if params[:approved] == "false"
-      @users = User.where("approved = ?", false).order("created_at DESC") 
+      @users = User.where("approved = ?", false).order("created_at DESC")
     elsif params[:vote] == "true"
       @users = User.where.not("id = ?",current_user.id).order("point DESC")
     elsif params[:leads] == "true"
       @users = User.where(:lead => true).order("point DESC")
     else
       @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
-    end 
+    end
   end
 
   def show
+    @events = Event.all
     @user.point = 0
     @user.posts.each do |post|
       @user.point += post.cached_votes_up + post.comments_count
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     @user.point += current_user.posts_count * 5
     @user.update_column(:point, @user.point)
     @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-    
+
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude

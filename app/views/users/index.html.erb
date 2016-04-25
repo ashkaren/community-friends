@@ -23,6 +23,7 @@
           </table>
         <br>
         <%= link_to 'Back', user_path(current_user) %>
+
         <br><br>
         <div style='width: 800px;'>
           <div id="map" style='width: 800px; height: 400px;'></div>
@@ -83,8 +84,8 @@
           <br>
           <%= link_to 'Back', user_path(current_user) %>
         </div>
-      </div> 
-    
+      </div>
+
     <% elsif signed_in? && params[:leads] == "true" %>
       <div class="row">
         <div class="col-lg-6 col-lg-offset-3 well">
@@ -109,7 +110,7 @@
           <br>
           <%= link_to 'Back', user_path(current_user) %>
         </div>
-      </div> 
+      </div>
 
     <% else %>
       <div class="row">
@@ -148,4 +149,3 @@
     handler.fitMapToBounds();
   });
 </script>
-  

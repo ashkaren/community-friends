@@ -17,11 +17,11 @@
           <div id="map" style='width: 450px; height: 200px;'></div>
         </div>
         <br>
-        <%= month_calendar meetings: @meetings do |date, meetings| %>
+        <%= month_calendar events: @events do |date, meetings| %>
           <%= date.day %>
           <% meetings.each do |meeting| %>
             <div>
-              <%= meeting.name %>
+              <%= link_to meeting.name, meeting %>
             </div>
           <% end %>
         <% end %>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    
+
   <% else %>
   <%= render 'appwide/cover', user: @user %>
   <br>
@@ -53,12 +53,12 @@
         <div id="map" style='width: 450px; height: 200px;'></div>
       </div>
       <br>
-      <%= month_calendar meetings: @meetings do |date, meetings| %>
+      <%= month_calendar events: @events do |date, meetings| %>
         <%= date.day %>
 
         <% meetings.each do |meeting| %>
           <div>
-            <%= meeting.name %>
+            <%= link_to meeting.name, meeting %>
           </div>
 
         <% end %>
