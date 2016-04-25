@@ -92,32 +92,7 @@
                       </div>
                     </div>
                   </div>
-                <% if user_signed_in? %>
-                  <div class="actions">
-                    <div class="row">
-                      <div class="col-xs-6 like">
-                        <% if current_user.liked? likeable %>
-                          <%= form_tag unlike_path(likeable_type: likeable.class.to_s, likeable_id: likeable.id), method: :post, remote: true do %>
-                            <% button_tag class: 'btn btn-block liked' do %>
-                              <%= fa_icon 'thumbs-up' %> unlike
-                            <% end %>
-                          <% end %>
-                        <% else %>
-                          <%= form_tag like_path(likeable_type: likeable.class.to_s, likeable_id: likeable.id), remote: true do %>
-                            <% button_tag class: 'btn btn-block' do %>
-                              <%= fa_icon 'thumbs-up' %> like
-                            <% end %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                      <div class="col-xs-6 comment">
-                        <%= link_to resource, class: 'btn btn-block' do %>
-                          <%= fa_icon 'comment' %> comment
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
+                <%= render 'appwide/actions', resource: post %>
               </div>
             </div>
           <% end %>
