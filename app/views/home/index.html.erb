@@ -14,8 +14,20 @@
       <%= render 'appwide/paginate', resources: @activities %>
     </div>
     <div class="col-lg-4">
-      <%= render 'appwide/links' %>
+    <div id="activities">
+      <% if @business.empty? %>
+        <div class="well">
+          <h3>Business/Broadcast Listings</h3>
+          <%= render('appwide/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+        <h3>Business/Broadcast Listings</h3>
+        <%= render_activities(@business, layout: '/appwide/activity') %>
+      <% end %>
     </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+  </div> 
 
   <% elsif current_user.business? %>
     <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
@@ -35,10 +47,10 @@
     <div class="col-lg-2">
       <%= render 'appwide/side_links' %>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-6">
       <ul class="nav nav-tabs">
         <li class="active"><%=link_to 'All', welcome_path %></li>
-        <li><a data-toggle="tab" href="#work">Work</a></li>
+        <li><a data-toggle="tab" href="#wanted">Wanted</a></li>
         <li><a data-toggle="tab" href="#forsale">For Sale</a></li>
         <li><a data-toggle="tab" href="#events">Events</a></li>
         <li><a data-toggle="tab" href="#news">News</a></li>
@@ -56,193 +68,89 @@
             <% end %>
           </div>
           <%= render 'appwide/paginate', resources: @activities %>
-        </div>
-
-        <div id="work" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "Work" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
-              </div>
+        </div>       
+      
+      <div id="wanted" class="tab-pane fade in active">
+        <div id="wanted">
+          <% if @wanted.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
             </div>
+          <% else %>
+            <%= render_activities(@wanted, layout: '/appwide/activity') %>
           <% end %>
-        <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @wanted %>
       </div>
 
       <div id="forsale" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "For sale" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
-              </div>
+        <div id="forsale">
+          <% if @forsale.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
             </div>
+          <% else %>
+            <%= render_activities(@forsale, layout: '/appwide/activity') %>
           <% end %>
-        <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @forsale %>
       </div>
 
       <div id="events" class="tab-pane fade in active">
-          <div id="events">
-            <% if @events.empty? %>
-              <div class="well">
-                <%= render('appwide/no_resource', resources: 'Activities') %>
-              </div>
-            <% else %>
-              <%= render_activities(@events, layout: '/appwide/activity') %>
-            <% end %>
-          </div>
-          <%= render 'appwide/paginate', resources: @events %>
+        <div id="events">
+          <% if @events.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@events, layout: '/appwide/activity') %>
+          <% end %>
         </div>
+        <%= render 'appwide/paginate', resources: @events %>
+      </div>
 
       <div id="news" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "News" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
-              </div>
+        <div id="news">
+          <% if @news.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
             </div>
+          <% else %>
+            <%= render_activities(@news, layout: '/appwide/activity') %>
           <% end %>
-        <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @news %>
       </div>
 
       <div id="broadcast" class="tab-pane fade in active">
-          <% @posts.each do |post| %>
-            <% if post.category == "Broadcasts" %>
-              <div id="post-<%= @post.id %>" class="post">
-                <div class="well">
-                  <div class="info">
-                    <%= render 'appwide/avatar', user: post.user %>
-                    <h4 class="name"><%= post.user.name %></h4>
-                    <span class="action">created a <%= link_to 'post', post %></span>
-                  </div>
-                  <div class="content">
-                    <span class="text"><%= post.content_html %></span>
-                    <% if post.attachment.present? %>
-                      <div class="attachment">
-                        <%= image_tag post.attachment %>
-                      </div>
-                    <% end %>
-                    <%= render 'appwide/created_at', activity: post %>
-
-                    <div class="points">
-                      <span class="like-count"><%= pluralize(post.cached_votes_up, 'like') %></span>
-                      <span class="comments-count"><%= pluralize(post.comments_count, 'comment') %></span>
-                      <div class="pull-right">
-                        <% if belongs_to_user?(post) %>
-                          <%= link_to edit_post_path(post), class: 'btn btn-primary btn-sm' do %>
-                            <% fa_icon 'pencil' %>
-                          <% end %>
-                          <%= link_to post_path(post), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                            <% fa_icon 'trash' %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <%= render 'appwide/actions', resource: post %>
-              </div>
+        <div id="broadcast">
+          <% if @business.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
             </div>
+          <% else %>
+            <%= render_activities(@business, layout: '/appwide/activity') %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+        <%= render 'appwide/paginate', resources: @business %>
+      </div> 
     </div>
   </div>
 
-  <div class="col-lg-3">
-    <%= render 'appwide/links' %>
-  </div>
-  <div class="col-lg-2">
-    <%= render 'appwide/friends' %>
-    <%= render 'appwide/conversations' %>
+  <div class="col-lg-4">
+    <div id="activities", class="well col-no-padding">
+      <% if @business.empty? %>
+        <div class="well">
+          <center><h3>Business/Broadcast Listings</h3></center>
+          <%= render('appwide/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+          <center><h3>Business/Broadcast Listings</h3></center>
+        <%= render_activities(@business, layout: '/appwide/activity') %>
+      <% end %>
+    </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+    </div>
   </div>
 
   <% end %>

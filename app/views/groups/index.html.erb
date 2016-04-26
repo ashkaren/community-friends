@@ -14,7 +14,7 @@
             <% if group.users.include? current_user %>
               <th colspan="4">Actions</th>
             <% else %>
-              <th colspan="3">Actions</th>
+              <th colspan="1">Actions</th>
             <% end %>
           <% end %>
         </tr>
@@ -26,13 +26,13 @@
             <td><%= group.name %></td>
             <td><%= group.description %></td>
             <td><%= group.users.map{|user| user.name}.join(',') %></td>
-            <td><%= link_to 'Show', group %></td>
-            <td><%= link_to 'Edit', edit_group_path(group) %></td>
-            <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% if group.users.include? current_user %>
+              <td><%= link_to 'Show', group %></td>
+              <td><%= link_to 'Edit', edit_group_path(group) %></td>
+              <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <td><%= link_to 'Leave', leave_path(group), method: :post, data: { confirm: 'Are you sure?' } %></td>
             <% else %>
-              <td><%= link_to "Join", join_group_path(group)%></td>
+              <td><%= link_to "Join", join_group_path(group), class: 'btn btn-primary'%></td>
             <% end %>
           </tr>
         <% end %>

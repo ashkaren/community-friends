@@ -1,4 +1,4 @@
-class AddCategoryToPosts < ActiveRecord::Migration
+class AddCategoriesToPosts < ActiveRecord::Migration
   def change
     add_column :posts, :category, :string
   end

@@ -27,14 +27,22 @@ class UsersController < ApplicationController
 
   def show
     @events = Event.all
+    if current_user.business?
+      session[:id] = -1
+    else
+      session[:id] = 0
+    end
     @user.point = 0
     @user.posts.each do |post|
       @user.point += post.cached_votes_up + post.comments_count
     end
     @user.point += current_user.posts_count * 5
     @user.update_column(:point, @user.point)
-    @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-
+    if current_user.business?
+      @activities = PublicActivity::Activity.where(owner: @user).where(:group_id => -1).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    else
+      @activities = PublicActivity::Activity.where(owner: @user).where(:group_id => 0).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude

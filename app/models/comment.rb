@@ -13,7 +13,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   include PublicActivity::Model
-  tracked only: [:create], owner: Proc.new{ |controller, model| model.user }
+  tracked only: [:create], owner: Proc.new{ |controller, model| controller.current_user }
 
   validates_presence_of :comment
   validates_presence_of :commentable

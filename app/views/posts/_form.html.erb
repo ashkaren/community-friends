@@ -11,8 +11,22 @@
       <%= f.file_field :attachment %>
     </div>
     <div class="form-group">
-      <%= f.select :category, Post::CATEGORY, prompt: 'Select category' %>
+      <% if current_user.business? %>
+        <%= f.select :view, Post::VIEW, default: 'Public' %>
+        <%= f.select :category, [ 'General', 'Broadcast'], default: 'General' %>
+      <% elsif current_user.lead? %>
+        <%= f.select :view, Post::VIEW, default: 'Public' %>
+        <%= f.select :category, [ 'General', 'Wanted', 'For Sale', 'News'], default: 'General' %>
+      <% else %>
+        <%= f.select :view, Post::VIEW, default: 'Public' %>
+        <%= f.select :category, [ 'General', 'Wanted', 'For Sale'], default: 'General' %>
+      <% end %> 
     </div>
+    <% if current_page?(:controller => 'groups', :action => 'show', :id => params[:id]) %>
+      <%= f.hidden_field :group_id, :value => params[:id] %>
+    <% else %>
+      <%= f.hidden_field :group_id, :value => 0 %>
+    <% end %>
     <div class="form-group">
       <a id="post-attachment" href="javascript:void(0);" class="pull-right btn btn-primary">
         <%= fa_icon 'image' %>

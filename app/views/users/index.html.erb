@@ -33,7 +33,10 @@
 
     <%elsif signed_in? && (current_user.lead? && params[:approved] == "false") %>
       <div class="row">
-        <div class="col-lg-10 col-lg-offset-1 well">
+        <div class="col-lg-3">
+          <%= render 'appwide/side_links' %>
+        </div>
+        <div class="col-lg-9 well">
           <h3>Registered Users Pending Approval</h3>
           <table class="bordered">
             <thead>
@@ -60,7 +63,10 @@
 
     <% elsif signed_in? && (current_user.lead? && params[:vote] == "true") %>
       <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 well">
+        <div class="col-lg-3">
+          <%= render 'appwide/side_links' %>
+        </div>
+        <div class="col-lg-9 well">
           <h3>Registered Users</h3>
           <table class="bordered">
             <thead>
@@ -88,7 +94,10 @@
 
     <% elsif signed_in? && params[:leads] == "true" %>
       <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 well">
+        <div class="col-lg-3">
+          <%= render 'appwide/side_links' %>
+        </div>
+        <div class="col-lg-9 well">
           <h3>Current Lead(s)</h3>
           <table class="bordered">
             <thead>
@@ -114,7 +123,10 @@
 
     <% else %>
       <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 well">
+        <div class="col-lg-3">
+          <%= render 'appwide/side_links' %>
+        </div>
+        <div class="col-lg-9 well">
           <h3>Registered Users</h3>
           <table class="bordered">
             <thead>
