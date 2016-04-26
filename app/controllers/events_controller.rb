@@ -12,6 +12,7 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params)
     if @event.save
       redirect_to welcome_path
+      flash[:notice] = "Event has been successfully created"
     else
       render 'new', notice: @event.errors.full_messages.first
     end
