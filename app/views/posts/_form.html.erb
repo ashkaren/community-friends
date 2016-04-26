@@ -28,7 +28,7 @@
     <% if current_page?(:controller => 'groups', :action => 'show', :id => params[:id]) %>
       <%= f.hidden_field :group_id, :value => params[:id] %>
     <% else %>
-      <%= f.hidden_field :group_id, :value => 0 %>
+      <%= f.hidden_field :group_id, :value => 1 %>
     <% end %>
     <div class="form-group">
       <a id="post-attachment" href="javascript:void(0);" class="pull-right btn btn-primary">
