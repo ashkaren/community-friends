@@ -37,8 +37,11 @@ class UsersController < ApplicationController
     end
     @user.point += current_user.posts_count * 5
     @user.update_column(:point, @user.point)
-    @activities = PublicActivity::Activity.where(owner: @user).where(:group_id => 0).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-    
+    if current_user.business?
+      @activities = PublicActivity::Activity.where(owner: @user).where(:group_id => -1).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    else
+      @activities = PublicActivity::Activity.where(owner: @user).where(:group_id => 0).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude

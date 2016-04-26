@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   VIEW = ['Public', 'Private']
 
   include PublicActivity::Model
-  tracked only: [:create, :like], owner: Proc.new{ |controller, model| controller.current_user }, group_id: proc {|controller, model| controller && controller.group}, category: proc {|controller, model| controller && controller.categ}
+  tracked only: [:create, :like], owner: Proc.new{ |controller, model| controller.current_user }, group_id: proc {|controller, model| controller && controller.group}, category: proc {|controller, model| controller && controller.categ}, view: proc {|controller, model| controller && controller.vi}
 
   default_scope -> { order('created_at DESC') }
 

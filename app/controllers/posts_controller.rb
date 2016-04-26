@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @views = ['Public', 'Private']
     @post = current_user.posts.new(post_params)
     session[:cat] = post_params[:category]
+    session[:v] = post_params[:view]
     if @post.save
       redirect_to welcome_path
     else

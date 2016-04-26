@@ -20,6 +20,12 @@ class ApplicationController < ActionController::Base
   helper_method :categ
   hide_action :categ
 
+  def vi
+      @viw = session[:v]
+  end
+  helper_method :vi
+  hide_action :vi
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :sex, :address, :email, :password, :password_confirmation) }

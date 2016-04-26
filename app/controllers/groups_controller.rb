@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @groups = Group.all
     @group = Group.find(params[:id])
     session[:id] = @group.id
     @activities = PublicActivity::Activity.where(:group_id => @group).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
