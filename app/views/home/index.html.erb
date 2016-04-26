@@ -1,3 +1,10 @@
+<style>
+  #blistings {
+    height: 600px;
+    overflow-y: scroll;
+  }
+</style>
+
 <div class="row row-no-padding">
 
   <% if current_user.admin? %>
@@ -139,15 +146,17 @@
 
   <div class="col-lg-4">
     <div id="activities", class="well col-no-padding">
-      <% if @business.empty? %>
-        <div class="well">
-          <center><h3>Business/Broadcast Listings</h3></center>
-          <%= render('appwide/no_resource', resources: 'Activities') %>
-        </div>
-      <% else %>
-          <center><h3>Business/Broadcast Listings</h3></center>
-        <%= render_activities(@business, layout: '/appwide/activity') %>
-      <% end %>
+      <div id="blistings">
+        <% if @business.empty? %>
+          <div class="well">
+            <center><h3>Business/Broadcast Listings</h3></center>
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+            <center><h3>Business/Broadcast Listings</h3></center>
+          <%= render_activities(@business, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
     </div>
     <%= render 'appwide/paginate', resources: @activities %>
     </div>
