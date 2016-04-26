@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :attachment
       t.text :content
       t.references :user, index: true, foreign_key: true
-      t.string :group
+      t.string :group_id
 
       t.timestamps null: false
     end
