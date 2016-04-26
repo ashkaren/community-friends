@@ -7,13 +7,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
+    @views = ['Public', 'Private']
     @comments = @post.comments.all
   end
 
   def create
-    @categories = ['Work', 'For sale', 'Events','News', 'Broadcasts']
+    @views = ['Public', 'Private']
     @post = current_user.posts.new(post_params)
+    session[:cat] = post_params[:category]
     if @post.save
       redirect_to welcome_path
     else
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
+    @views = ['Public', 'Private']
     @post.update(post_params)
     redirect_to @post
   end
@@ -40,14 +41,18 @@ class PostsController < ApplicationController
 
   private
   def set_categories
-    @categories = ['Work', 'For sale', 'Events', 'News', 'Broadcasts']
+    @categories = ['General', 'Work', 'For Sale']
   end
   def set_post
     @post = Post.find(params[:id])
   end
 
+  def group_id
+    @group = Group.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit(:content, :attachment, :category)
+    params.require(:post).permit(:content, :attachment, :view, :category, :group_id)
   end
 
   def set_user

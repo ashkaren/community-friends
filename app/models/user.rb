@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :groups, :dependent => :destroy
+  has_many :posts
+  has_and_belongs_to_many :groups, :join_table => :groups_users
   geocoded_by :address
   after_validation :geocode
 
@@ -14,7 +15,6 @@ class User < ActiveRecord::Base
   has_many :conversations, :foreign_key => :sender_id
   after_create :create_default_conversation
   
-  has_many :posts
   has_many :comments
   has_many :events
 

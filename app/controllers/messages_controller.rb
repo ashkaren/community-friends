@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
     @conversations = Conversation.between(params[:sender_id],params[:recipient_id])
   end
 

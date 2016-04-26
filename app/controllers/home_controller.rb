@@ -17,8 +17,11 @@ class HomeController < ApplicationController
     @conversations = Conversation.involving(current_user).order("created_at DESC")  
     @post = Post.new
     @friends = @user.all_following.unshift(@user)
-    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @activities = PublicActivity::Activity.where(:group_id => 0).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @events = PublicActivity::Activity.where(:key => "event.create").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @news = PublicActivity::Activity.where(:category => "News").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @business = PublicActivity::Activity.where(:group_id => -1).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+
   end
 
   def find_friends
