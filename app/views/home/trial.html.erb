@@ -1,0 +1,166 @@
+<style>
+  #blistings {
+    height: 600px;
+    overflow-y: scroll;
+  }
+</style>
+
+<div class="row row-no-padding">
+
+  <% if current_user.admin? %>
+    <div id="newsfeed" class="col-lg-6 col-lg-offset-1">
+      <div id="activities">
+        <% if @activities.empty? %>
+          <div class="well">
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+          <%= render_activities(@activities, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+      <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+    <div class="col-lg-4">
+    <div id="activities">
+      <% if @business.empty? %>
+        <div class="well">
+          <h3>Business/Broadcast Listings</h3>
+          <%= render('appwide/no_resource', resources: 'Activities') %>
+        </div>
+      <% else %>
+        <h3>Business/Broadcast Listings</h3>
+        <%= render_activities(@business, layout: '/appwide/activity') %>
+      <% end %>
+    </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+  </div> 
+
+  <% elsif current_user.business? %>
+    <div id="newsfeed" class="col-lg-8 col-lg-offset-2">
+      <div id="activities">
+        <% if @activities.empty? %>
+          <div class="well">
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+          <%= render_activities(@activities, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+      <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+
+  <% else %>
+    <div class="col-lg-2">
+      <%= render 'appwide/side_links' %>
+    </div>
+    <div class="col-lg-6">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#all">All</a></li>
+        <li><a data-toggle="tab" href="#wanted">Wanted</a></li>
+        <li><a data-toggle="tab" href="#forsale">For Sale</a></li>
+        <li><a data-toggle="tab" href="#events">Events</a></li>
+        <li><a data-toggle="tab" href="#news">News</a></li>
+        <li><a data-toggle="tab" href="#broadcast">Broadcasts</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="all" class="tab-pane fade in active">
+          <div id="activities">
+            <% if @activities.empty? %>
+              <div class="well">
+                <%= render('appwide/no_resource', resources: 'Activities') %>
+              </div>
+            <% else %>
+              <%= render_activities(@activities, layout: '/appwide/activity') %>
+            <% end %>
+          </div>
+          <%= render 'appwide/paginate', resources: @activities %>
+        </div>        
+      
+      <div id="wanted" class="tab-pane fade in active">
+        <div id="wanted">
+          <% if @wanted.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@wanted, layout: '/appwide/activity') %>
+          <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @wanted %>
+      </div>
+
+      <div id="forsale" class="tab-pane fade in active">
+        <div id="forsale">
+          <% if @forsale.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@forsale, layout: '/appwide/activity') %>
+          <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @forsale %>
+      </div>
+
+      <div id="events" class="tab-pane fade in active">
+        <div id="events">
+          <% if @events.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@events, layout: '/appwide/activity') %>
+          <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @events %>
+      </div>
+
+      <div id="news" class="tab-pane fade in active">
+        <div id="news">
+          <% if @news.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@news, layout: '/appwide/activity') %>
+          <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @news %>
+      </div>
+
+      <div id="broadcast" class="tab-pane fade in active">
+        <div id="broadcast">
+          <% if @business.empty? %>
+            <div class="well">
+              <%= render('appwide/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@business, layout: '/appwide/activity') %>
+          <% end %>
+        </div>
+        <%= render 'appwide/paginate', resources: @business %>
+      </div>      
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div id="activities", class="well col-no-padding">
+      <div id="blistings">
+        <% if @business.empty? %>
+          <div class="well">
+            <center><h3>Business/Broadcast Listings</h3></center>
+            <%= render('appwide/no_resource', resources: 'Activities') %>
+          </div>
+        <% else %>
+            <center><h3>Business/Broadcast Listings</h3></center>
+          <%= render_activities(@business, layout: '/appwide/activity') %>
+        <% end %>
+      </div>
+    </div>
+    <%= render 'appwide/paginate', resources: @activities %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
