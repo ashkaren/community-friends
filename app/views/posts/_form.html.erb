@@ -17,6 +17,9 @@
       <% elsif current_user.lead? %>
         <%= f.select :view, Post::VIEW, default: 'Public' %>
         <%= f.select :category, [ 'General', 'Wanted', 'For Sale', 'News'], default: 'General' %>
+      <% elsif  current_page?(:controller => 'groups', :action => 'show', :id => params[:id]) %>
+        <%= f.select :view, ['Private'], default: 'Private' %>
+        <%= f.select :category, ['General'], default: 'General' %>
       <% else %>
         <%= f.select :view, Post::VIEW, default: 'Public' %>
         <%= f.select :category, [ 'General', 'Wanted', 'For Sale'], default: 'General' %>

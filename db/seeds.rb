@@ -102,3 +102,7 @@ user = User.create!(
 	:confirmed_at => '2016-04-05 00:44:30.309072',
 
 )
+
+group = Group.create!(
+	:name => 'Default',
+)
