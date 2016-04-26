@@ -124,15 +124,15 @@
 
       <div id="broadcast" class="tab-pane fade in active">
         <div id="broadcast">
-          <% if @business.empty? %>
+          <% if @broadcasts.empty? %>
             <div class="well">
               <%= render('appwide/no_resource', resources: 'Activities') %>
             </div>
           <% else %>
-            <%= render_activities(@business, layout: '/appwide/activity') %>
+            <%= render_activities(@broadcasts, layout: '/appwide/activity') %>
           <% end %>
         </div>
-        <%= render 'appwide/paginate', resources: @business %>
+        <%= render 'appwide/paginate', resources: @broadcasts %>
       </div>      
     </div>
   </div>

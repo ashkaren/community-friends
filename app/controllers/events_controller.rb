@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
 
   def create
+    session[:id] = 0
+    session[:v] = "Public"
     @event = current_user.events.new(event_params)
     if @event.save
       redirect_to welcome_path
@@ -31,7 +33,7 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:name, :start_time, :address, :description)
+    params.require(:event).permit(:name, :start_time, :address, :description, :group_id)
   end
 
   def set_event

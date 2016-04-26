@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426070626) do
+ActiveRecord::Schema.define(version: 20160426184007) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
     t.string   "trackable_type"
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.string   "group_id"
     t.string   "key"
     t.text     "parameters"
     t.integer  "recipient_id"
@@ -25,11 +26,9 @@ ActiveRecord::Schema.define(version: 20160426070626) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
-    t.integer  "group_id"
     t.string   "view"
   end
 
-  add_index "activities", ["group_id"], name: "index_activities_on_group_id"
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
@@ -70,6 +69,8 @@ ActiveRecord::Schema.define(version: 20160426070626) do
     t.datetime "start_time"
     t.string   "address"
     t.text     "description"
+    t.string   "group_id"
+    t.string   "view"
   end
 
   add_index "events", ["cached_votes_up"], name: "index_events_on_cached_votes_up"
@@ -125,7 +126,7 @@ ActiveRecord::Schema.define(version: 20160426070626) do
     t.string   "attachment"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "group_id"
+    t.string   "group_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "comments_count",  default: 0
@@ -136,7 +137,6 @@ ActiveRecord::Schema.define(version: 20160426070626) do
 
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
   add_index "posts", ["comments_count"], name: "index_posts_on_comments_count"
-  add_index "posts", ["group_id"], name: "index_posts_on_group_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|

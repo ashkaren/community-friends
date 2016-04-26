@@ -16,8 +16,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     session[:cat] = post_params[:category]
     session[:v] = post_params[:view]
-    if @post.save
-      redirect_to welcome_path
+    session[:return_to] ||= request.referer
+    if @post.save 
+      redirect_to session.delete(:return_to)
     else
       redirect_to welcome_path, notice: @post.errors.full_messages.first
     end

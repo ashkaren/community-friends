@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   acts_as_commentable
 
   include PublicActivity::Model
-  tracked only: [:create, :like], owner: Proc.new{ |controller, model| controller.current_user }
+  tracked only: [:create, :like], owner: Proc.new{ |controller, model| controller.current_user }, group_id: proc {|controller, model| controller && controller.group}, view: proc {|controller, model| controller && controller.vi}
 
   validates_presence_of :name
   #validates_presence_of :when

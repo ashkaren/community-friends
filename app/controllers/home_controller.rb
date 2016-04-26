@@ -20,13 +20,14 @@ class HomeController < ApplicationController
     if current_user.business?
       @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     else
-      @activities = PublicActivity::Activity.where(:group_id => 0).where(:view => "Public").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      @activities = PublicActivity::Activity.where(:group_id => 0).where.not(:key => "post.like").where.not(:key => "event.like").where.not(:key => "comment.create").where(:view => "Public").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
     @wanted = PublicActivity::Activity.where(:category => "Wanted").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @forsale = PublicActivity::Activity.where(:category => "For Sale").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @events = PublicActivity::Activity.where(:key => "event.create").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @news = PublicActivity::Activity.where(:category => "News").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     @business = PublicActivity::Activity.where(:group_id => -1).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @broadcasts = PublicActivity::Activity.where(:category => "Broadcast").order(created_at: :desc).paginate(page: params[:page], per_page: 10)
 
   end
 
